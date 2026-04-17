@@ -4,22 +4,45 @@
 
 ## Inputs
 
-- **Layer 4 (Working)**: `../01_sql_gen/output/query.sql` — The SQL query from the previous stage.
-- **Layer 3 (Reference)**: `../../EVD.psd1` — EVD database connection configuration (Dev/UAT/Prod environments).
+- **Layer 4 (Working)**: `stages/01_sql_gen/output/query.sql` — The SQL query generated and approved in Stage 1 (absolute path from EVD folder root).
+- **Layer 3 (Reference)**: `EVD.psd1` — EVD database connection configuration for Dev/UAT/Prod environments, located in the EVD folder root.
 
 ## Process
 
-1. Invoke `../../scripts/Invoke-EVDQuery.ps1` with the SQL file and export path:
-   ```powershell
-   Invoke-EVDQuery -SQLFile '../01_sql_gen/output/query.sql' -ExportPath 'output/vault_data.csv'
-   ```
-2. The script connects to the target database using settings from `EVD.psd1` and executes the query.
-3. Results are exported as a plain-text CSV file to the output path.
+### Execution Method
+
+The SQL query must be executed via the PowerShell script. You have two options:
+
+**Option A: User runs the script manually** (recommended for initial setup)
+```powershell
+# From the EVD folder, run:
+. .\scripts\Invoke-EVDQuery.ps1
+Invoke-EVDQuery -SQLFile '.\stages\01_sql_gen\output\query.sql' -ExportPath '.\stages\02_data_fetch\output\vault_data.csv'
+
+# For non-Prod environments, add: -Environment Dev  or  -Environment UAT
+Invoke-EVDQuery -SQLFile '.\stages\01_sql_gen\output\query.sql' -ExportPath '.\stages\02_data_fetch\output\vault_data.csv' -Environment UAT
+```
+
+**Option B: AI agent executes the script** (if running in an agent-enabled terminal)
+The agent will run the equivalent command in a terminal and report the results.
+
+### Execution Details
+
+1. The script:
+   - Loads connection settings from EVD.psd1 (server names, database, etc.)
+   - Reads the approved SQL query from `stages/01_sql_gen/output/query.sql`
+   - Connects to the target EVD database using Windows Integrated Security
+   - Executes the query
+   - Exports all results to CSV format
+
+2. Output goes to the exact path specified: `stages/02_data_fetch/output/vault_data.csv`
+
+3. The script displays a summary showing row count and execution time
 
 ## Outputs
 
-- `vault_data.csv` → `output/vault_data.csv`
+- **CSV data export** → `stages/02_data_fetch/output/vault_data.csv` (absolute path from EVD folder root)
 
 ## Review Gate
 
-Stop here. Inspect `output/vault_data.csv` to verify the data retrieval was successful and accurate before the parsing stage begins.
+Stop here. Inspect the CSV file (`stages/02_data_fetch/output/vault_data.csv`) to verify the data retrieval was successful and accurate before the parsing stage begins.

@@ -4,8 +4,8 @@
 
 ## Inputs
 
-- **Layer 4 (Working)**: `../02_data_fetch/output/vault_data.csv` — Raw data from the previous stage.
-- **Layer 3 (Reference)**: `../../references/naming_standards.md` — Organization naming conventions to check against.
+- **Layer 4 (Working)**: `stages/02_data_fetch/output/vault_data.csv` — Raw data exported in Stage 2 (absolute path from EVD folder root).
+- **Layer 3 (Reference)**: `references/naming_standards.md` — Organization naming conventions to check against (located in EVD folder).
 
 ## Process
 
@@ -17,12 +17,12 @@
 
 ## Outputs
 
-- `compliance_report.md` → `output/compliance_report.md`
+- **Compliance report** → `stages/03_parsing/output/compliance_report.md` (absolute path from EVD folder root)
 
 ## Review Gate
 
 Stop here. The human reviews the compliance report.
 
-- **To plan remediation**: Proceed to Stage 4 (`../04_remediation/`) to generate a prioritized remediation plan (with recommended actions, severity grouping, and automation routing) before deciding whether to use psPAS.
-- **To go directly to psPAS**: Non-compliant accounts identified here can also be taken directly to `../../psPAS/CONTEXT.md` as input.
+- **To plan remediation**: Proceed to Stage 4 (`stages/04_remediation/`) to generate a prioritized remediation plan (with recommended actions, severity grouping, and automation routing) before deciding whether to use psPAS.
+- **To go directly to psPAS**: Non-compliant accounts identified here can also be taken directly to `CyberArk/psPAS/` as input.
 - **If no compliance issues**: If the compliance report shows zero findings, the pipeline is complete.

@@ -4,9 +4,9 @@
 
 ## Inputs
 
-- **Layer 4 (Working)**: `../03_parsing/output/compliance_report.md` — Compliance findings from Stage 3. Primary input.
-- **Layer 3 (Reference)**: `../../references/naming_standards.md` — Defines what "correct" looks like for each rule. Determines the target state for every action item.
-- **Layer 3 (Reference, on-demand)**: `../../references/query_templates/_INDEX.md` — Optionally consulted to suggest follow-up EVD queries that verify remediation was applied correctly.
+- **Layer 4 (Working)**: `stages/03_parsing/output/compliance_report.md` — Compliance findings from Stage 3 (absolute path from EVD folder root). Primary input.
+- **Layer 3 (Reference)**: `references/naming_standards.md` — Defines what "correct" looks like for each rule. Determines the target state for every action item (located in EVD folder).
+- **Layer 3 (Reference, on-demand)**: `references/query_templates/_INDEX.md` — Optionally consulted to suggest follow-up EVD queries that verify remediation was applied correctly.
 
 ## Process
 
@@ -20,7 +20,7 @@
 
 ## Outputs
 
-- `remediation_plan.md` → `output/remediation_plan.md`
+- **Remediation plan** → `stages/04_remediation/output/remediation_plan.md` (absolute path from EVD folder root)
 
 ### Output File Structure
 
@@ -46,7 +46,7 @@ Generated: [date]
 ## Automation Routing
 [Finding Type | Rule IDs | psPAS Automatable? | Manual Action table]
 [Note: safe renames require PVWA Administration — psPAS cannot rename safes]
-[Close with: "To automate eligible items, take this plan to ../../../psPAS/ Stage 01 Planning."]
+[Close with: "To automate eligible items, take this plan to CyberArk/psPAS/ Stage 01 Planning."]
 
 ## Validation Queries
 [Suggested follow-up EVD templates to confirm remediation was applied]
@@ -56,6 +56,6 @@ Generated: [date]
 
 Stop here. The human reviews the remediation plan.
 
-- **To automate**: Take `output/remediation_plan.md` to `../../../psPAS/stages/01_planning/` as the compliance input.
+- **To automate**: Take `stages/04_remediation/output/remediation_plan.md` to `CyberArk/psPAS/stages/01_planning/` as the compliance input.
 - **To remediate manually**: Work through the Priority 1–3 action tables directly in PVWA, using the "Correct Target" column as the exact value to enter.
 - **To verify**: After remediation, re-run the relevant EVD query templates (listed in the Validation Queries section) to confirm findings are resolved.
