@@ -12,4 +12,6 @@ Example workspaces and folder-structure tutorials from the **Clief-Notes** Skool
 ## Credit
 
 Full credit to Clief-Notes for the original material:
-[Clief-Notes on Skool](https://www.skool.com/quantum-quill-lyceum-1116/about)
+[Clief-Notes on Skool](https://www.skool.com/quantum-quill-lyceum-1116/about).  
+ 
+ Well worth joining for his content. 
