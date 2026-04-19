@@ -1,5 +1,5 @@
 
-# Calief Notes - "The Foundation"
+# Clief-Notes - "The Foundation"
 
 
 [3.2 Customizing for Your Use Case](https://www.skool.com/quantum-quill-lyceum-1116/classroom/036893d9?md=1285fe09df7943e79e5d71c68b8b3ccb)

@@ -1,6 +1,6 @@
 # CyberArk Vault Automation Workspace
 
-You are in the root of a CyberArk operations workspace. This workspace uses the Model Workspace Protocol (MWP) — a layered context hierarchy where folder structure replaces framework-level orchestration.
+You are in a CyberArk operations **sub-workspace** of `my-workflows-public/`. The repo root is the top-level MWP workspace; this folder is one of its sub-workspaces. MWP is a layered context hierarchy where folder structure replaces framework-level orchestration — and it applies recursively here, so this sub-workspace has its own `CLAUDE.md` (this file) and `CONTEXT.md` that route into its stages (EVD, psPAS, cyberark-api).
 
 ## How to Navigate
 

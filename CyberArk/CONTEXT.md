@@ -22,7 +22,7 @@ Some requests span multiple pipelines. Common flows:
 
 ## Global Constraints
 
-- **Route first, then load**: Read only this file and `CLAUDE.md` at the workspace root before routing. Do not open files inside EVD/, psPAS/, or cyberark-api/ until you have identified which sub-workspace the request belongs to.
+- **Route first, then load**: Read only this file and `CLAUDE.md` at the CyberArk sub-workspace root before routing. Do not open files inside EVD/, psPAS/, or cyberark-api/ until you have identified which sub-workspace the request belongs to.
 - **Lazy-load references**: After routing, load only the reference files required for the current task. Each sub-workspace has a `references/_INDEX.md` — read that first to identify which specific file to load. Never preload all reference files.
 - **Naming standards**: All outputs must follow the naming rules in the owning sub-workspace's `references/` folder. Internalize these as constraints before generating any output.
 - **Mechanical execution**: Use workspace-specific scripts and module functions for execution. Never generate inline execution code in response messages.
