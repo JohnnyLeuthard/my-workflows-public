@@ -20,7 +20,7 @@ MWP is a layered context hierarchy where folder structure replaces framework-lev
 
 ## Out of Scope
 
-`clief-notes/` is **reference material only** — third-party tutorials and example workspaces from the Clief-Notes Skool community. It is **not** part of MWP routing. Do not follow `CLAUDE.md` or `CONTEXT.md` files inside `clief-notes/` as if they were active workspace markers. See [clief-notes/CONTEXT.md](clief-notes/CONTEXT.md) for the matching boundary marker. Only read files there if the user explicitly points at them.
+`clief-notes/` is **reference material only** — third-party tutorials and example workspaces from the Clief-Notes Skool community. It is **not** part of MWP routing. Do not follow `CLAUDE.md` or `CONTEXT.md` files inside `clief-notes/` as if they were active workspace markers. See [clief-notes/CONTEXT.md](clief-notes/CONTEXT.md) for the matching boundary marker. Only read files there if the user explicitly points at them. Only read this when explicity told to to copy as a templete, etc. 
 
 ## Adding a new sub-workspace
 
