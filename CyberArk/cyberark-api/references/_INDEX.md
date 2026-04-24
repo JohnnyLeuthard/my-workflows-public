@@ -18,16 +18,3 @@ Load reference files **on demand** — only load what the current task requires.
 | `auth_methods.md` | Choosing or implementing a logon method (CyberArk, LDAP, RADIUS, SAML, PKI) |
 | `error_codes.md` | Handling API errors, writing error handling logic, diagnosing failed calls |
 
-## Reference File Status
-
-| File | Status | Notes |
-|---|---|---|
-| `api/_INDEX.md` | Stub | Populated as vendor docs are walked through |
-| `api/01_auth.md` | Stub | |
-| `api/02_accounts.md` | Stub | |
-| `api/03_safes.md` | Stub | |
-| `api/04_users.md` | Stub | |
-| `api/05_platforms.md` | Stub | |
-| `api/06_system_health.md` | Stub | |
-| `auth_methods.md` | Stub | |
-| `error_codes.md` | Stub | |

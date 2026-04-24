@@ -1,6 +1,6 @@
 # CyberArk Vault Automation Workspace
 
-You are in a CyberArk operations **sub-workspace** of `my-workflows-public/`. The repo root is the top-level MWP workspace; this folder is one of its sub-workspaces. MWP is a layered context hierarchy where folder structure replaces framework-level orchestration — and it applies recursively here, so this sub-workspace has its own `CLAUDE.md` (this file) and `CONTEXT.md` that route into its stages (EVD, psPAS, cyberark-api).
+You are in a CyberArk operations **sub-workspace** of `my-workflows-public/`. The repo root is the top-level MWP workspace; this folder is one of its sub-workspaces. MWP is a layered context hierarchy where folder structure replaces framework-level orchestration — and it applies recursively here, so this sub-workspace has its own `CLAUDE.md` (this file) and `CONTEXT.md` that route into its sub-workspaces (EVD, psPAS, cyberark-api, api-evaluation).
 
 ## How to Navigate
 
@@ -22,10 +22,10 @@ components marked `N/A`. If a version field is blank, ask before giving version-
 
 ## Protocol Rules
 
-- **Layered loading**: Only read the CONTEXT.md for the stage you are currently in. Do not preload files from other stages.
+See root `CLAUDE.md` for global MWP rules (route-first, layered loading, no simulated data, no inline execution code). CyberArk-specific additions:
+
 - **Review gates**: Every stage ends with a stop. Wait for explicit human approval before proceeding to the next stage.
 - **Plain text interface**: All stage communication happens through markdown and CSV files in `output/` folders.
-- **No simulated data**: Never generate fake vault data, sample CSVs, or mock query results. Use pipeline-specific scripts (e.g., `EVD/scripts/`) for all mechanical execution.
-- **No inline execution code**: When a script is needed, reference the appropriate file in the pipeline's scripts directory. Do not generate PowerShell or Python inline.
-- **Self-contained workspaces**: Each sub-workspace (EVD, psPAS, cyberark-api) carries its own references in its `references/` folder. Do not duplicate reference material across workspaces — point to the owning workspace's `references/` instead. The `_config/` folder holds only cross-workspace pointers (environment versions, shared standards).
+- **Self-contained sub-workspaces**: Each sub-workspace (EVD, psPAS, cyberark-api, api-evaluation) carries its own references in its `references/` folder. Point to the owning sub-workspace's `references/` instead of duplicating. The `_config/` folder holds only cross-sub-workspace pointers (e.g., `environment.md`).
 - **cyberark-api is a module, not a pipeline**: Unlike EVD (staged SQL pipeline) and psPAS (staged remediation pipeline), `cyberark-api` is a living PowerShell module. It has no fixed stage sequence — work is request-driven. MWP still applies: load `cyberark-api/CLAUDE.md` for identity, `cyberark-api/CONTEXT.md` for routing, then load only the specific `references/api/` doc needed for the current function or script. Do not preload all API reference files.
+- **api-evaluation is a reference library, not an executor**: `api-evaluation` documents the REST API per PVWA version. Live calls belong in `cyberark-api` or `psPAS`.

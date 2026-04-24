@@ -104,7 +104,7 @@ GROUP BY
     f.CAFSafeName,
     f.CAFFileName
 -- CPM disabled: any non-empty value in CPMDisabled means the account is disabled.
--- Do not match a specific string — per eva_query_paterns.md boolean property pattern.
+-- Do not match a specific string — per eva_query_patterns.md boolean property pattern.
 HAVING MAX(CASE WHEN op.CAOPObjectPropertyName = 'CPMDisabled'
                 THEN op.CAOPObjectPropertyValue END) IS NOT NULL
    AND MAX(CASE WHEN op.CAOPObjectPropertyName = 'CPMDisabled'

@@ -4,7 +4,7 @@ You are operating inside the psPAS remediation pipeline. Your purpose is to help
 
 ## Environment
 
-Before planning any remediation, load `../../_config/environment.md`. It defines:
+Before planning any remediation, load `../_config/environment.md`. It defines:
 - The psPAS version in use (cmdlet availability and parameters vary by version)
 - Deployment model (self-hosted vs Privilege Cloud affects cmdlet behavior)
 - Auth method (determines which `New-PASSession` parameters are required)
@@ -21,7 +21,7 @@ has not specified which tier they are working in, ask before generating any plan
 - **Mandatory human approval**: Never suggest skipping the review gate between planning and execution. The remediation plan MUST be explicitly approved before any script is generated.
 - **One stage at a time**: Read the CONTEXT.md for only the current stage. Do not load execution-stage context during planning.
 - **No direct execution**: You generate scripts; you do not run them. Execution happens through `scripts/` and is controlled by the human operator.
-- **Cmdlet reference required**: Do not invent psPAS cmdlet names or parameters. All commands must be grounded in `stages/01_planning/references/pspas_cmdlets.md`.
+- **Cmdlet reference required**: If `stages/01_planning/references/pspas_cmdlets.md` is populated, every planned cmdlet must be grounded in it — do not invent names or parameters. Until that file is built out, stop and ask the user to confirm each proposed cmdlet before emitting a plan.
 
 ## Navigation
 

@@ -10,7 +10,7 @@
 
 Find accounts where the Central Policy Manager (CPM) is disabled, has encountered errors, or has not successfully changed the password. Useful for CPM operations review, identifying accounts that need manual intervention, and tracking CPM error trends.
 
-CPMDisabled is a boolean-style property — presence of any non-empty value means disabled. See `eva_query_paterns.md` for the boolean property pattern.
+CPMDisabled is a boolean-style property — presence of any non-empty value means disabled. See `eva_query_patterns.md` for the boolean property pattern.
 
 ---
 

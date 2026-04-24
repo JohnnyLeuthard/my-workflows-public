@@ -11,7 +11,9 @@ No SQL or PowerShell knowledge required. Each step stops for your review before 
 | Pipeline | Purpose | Status | Guide |
 |----------|---------|--------|-------|
 | **EVD** | Extract and analyze vault data (read-only) | Ready | [EVD/USAGE.md](EVD/USAGE.md) |
-| **psPAS** | Remediate accounts via the CyberArk API (write) | Under construction | [psPAS/USAGE.md](psPAS/USAGE.md) |
+| **psPAS** | Remediate accounts via the psPAS module (write) | Stages scaffolded; cmdlet reference pending | [psPAS/USAGE.md](psPAS/USAGE.md) |
+| **cyberark-api** | Build/maintain a direct REST PowerShell module (write) | In development | [cyberark-api/USAGE.md](cyberark-api/USAGE.md) |
+| **api-evaluation** | Per-version REST API reference library (read-only, no live calls) | In development | [api-evaluation/USAGE.md](api-evaluation/USAGE.md) |
 
 ### How they connect
 
@@ -51,21 +53,32 @@ Each pipeline is a self-contained folder. You can share or hand off a pipeline f
 
 ```
 CyberArk/
-├── USAGE.md          <-- You are here
-├── EVD/              <-- Vault data extraction pipeline
-│   ├── USAGE.md      <-- EVD user guide
-│   ├── EVD.psd1      <-- Database connection config
-│   ├── scripts/      <-- Execution scripts
-│   ├── references/   <-- Schema, rules, exclusions (AI reads these)
-│   └── stages/       <-- The 3-stage workflow
+├── USAGE.md             <-- You are here
+├── _config/             <-- Cross-workspace pointers (environment versions)
+├── EVD/                 <-- Vault data extraction pipeline (read-only)
+│   ├── USAGE.md         <-- EVD user guide
+│   ├── EVD.psd1         <-- Database connection config
+│   ├── scripts/         <-- Execution scripts
+│   ├── references/      <-- Schema, rules, exclusions (AI reads these)
+│   └── stages/          <-- The 4-stage workflow
 │       ├── 01_sql_gen/
 │       ├── 02_data_fetch/
-│       └── 03_parsing/
-└── psPAS/            <-- Account remediation pipeline (coming soon)
-    ├── USAGE.md      <-- psPAS user guide (placeholder)
-    └── stages/
-        ├── 01_planning/
-        └── 02_execution/
+│       ├── 03_parsing/
+│       └── 04_remediation/
+├── psPAS/               <-- Account remediation pipeline (psPAS module)
+│   ├── USAGE.md
+│   └── stages/
+│       ├── 01_planning/
+│       └── 02_execution/
+├── cyberark-api/        <-- Direct REST API PowerShell module (request-driven, no fixed stages)
+│   ├── USAGE.md
+│   ├── module/
+│   ├── references/
+│   └── scripts/
+└── api-evaluation/      <-- Per-version REST API reference library (no live calls)
+    ├── USAGE.md
+    ├── versions/
+    └── references/
 ```
 
 ---

@@ -35,6 +35,6 @@
 
 ## Notes
 
-- Templates follow the same EAV pivot pattern documented in `../eva_query_paterns.md`
+- Templates follow the same EAV pivot pattern documented in `../eva_query_patterns.md`
 - System safe exclusions are embedded in each template — keep in sync with `../system_safe_exclusions.md`
 - Templates are starting points — the AI should adjust columns, filters, and thresholds based on the user's actual request

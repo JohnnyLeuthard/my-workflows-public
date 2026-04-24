@@ -18,7 +18,8 @@ Do not use API endpoints or parameters that require a higher PVWA version than l
 
 ### 1. No Redundancy
 Before creating any new function, check the current inventory:
-- Read `module/functions/` (all subfolders) to see what already exists
+- Read `module/public/Functions/` (all subfolders) to see what already exists
+- Read `module/private/Functions/` for internal helpers before writing a new one
 - Read `scripts/_INDEX.md` to see existing task scripts
 - If a suitable function already exists, use or extend it — do not create a duplicate
 

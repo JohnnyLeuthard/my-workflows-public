@@ -6,7 +6,7 @@
 
 - **Layer 4 (Working)**: `../../../EVD/stages/03_parsing/output/compliance_report.md` — OR a user-provided list of accounts to fix.
 - **Layer 3 (Reference)**: `references/pspas_cmdlets.md` — Available psPAS cmdlets and their parameters.
-- **Layer 3 (Reference)**: `../../../EVD/references/naming_standards.md` — Target naming conventions to remediate toward. *(Will move to `psPAS/references/` when this pipeline is built out.)*
+- **Layer 3 (Reference)**: `../../../EVD/references/naming_standards.md` — Target naming conventions to remediate toward. Shared with EVD; psPAS does not keep its own copy.
 
 ## Process
 

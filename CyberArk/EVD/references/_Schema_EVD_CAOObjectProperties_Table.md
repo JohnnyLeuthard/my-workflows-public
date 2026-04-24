@@ -96,7 +96,7 @@ WHERE op.CAOPObjectPropertyName = 'Address'
 | Property Name | Notes |
 |--------------|------|
 | ColumnName | Column name (DB accounts) |
-| CPMDisabled | Whether CPM is disabled — see [eva_query_paterns.md](eva_query_paterns.md#boolean-style-properties-eg-cpmdisabled) |
+| CPMDisabled | Whether CPM is disabled — see [eva_query_patterns.md](eva_query_patterns.md#boolean-style-properties-eg-cpmdisabled) |
 | CPMErrorDetails | Details of last CPM error |
 | CPMStatus | Current CPM status |
 | CreationMethod | How account was created |
@@ -107,7 +107,7 @@ WHERE op.CAOPObjectPropertyName = 'Address'
 | LastSuccessChange | Last password change — see [datetime_handling.md](datetime_handling.md) |
 | LastSuccessReconciliation | Last reconciliation — see [datetime_handling.md](datetime_handling.md) |
 | LastSuccessVerification | Last verification — see [datetime_handling.md](datetime_handling.md) |
-| LastTask | Last CPM task executed (e.g. `ChangeTask`, `VerifyTask`, `ReconcileTask`). **History only — NOT an indicator that the account has a scheduled task.** Do not use this property to find accounts with scheduled tasks attached; see [Task Scheduling](#task-scheduling) section and [eva_query_paterns.md](eva_query_paterns.md#identifying-accounts-with-scheduled-tasks) for the correct pattern. |
+| LastTask | Last CPM task executed (e.g. `ChangeTask`, `VerifyTask`, `ReconcileTask`). **History only — NOT an indicator that the account has a scheduled task.** Do not use this property to find accounts with scheduled tasks attached; see [Task Scheduling](#task-scheduling) section and [eva_query_patterns.md](eva_query_patterns.md#identifying-accounts-with-scheduled-tasks) for the correct pattern. |
 | MinValidityProcessed | Minimum validity processed |
 | NextPeriodicChangeSearch | Next change search date — see [datetime_handling.md](datetime_handling.md) |
 | NextPeriodicVerifySearch | Next verify search date — see [datetime_handling.md](datetime_handling.md) |
@@ -136,7 +136,7 @@ WHERE op.CAOPObjectPropertyName = 'Address'
 
 ## Task Scheduling
 
-> **Identifying accounts with scheduled tasks**: presence of any `Task*` property below (typically `TaskName`, `TaskDefinitionId`, or `TaskScheduleType`) indicates the account has a scheduled task definition attached. **Do not use `LastTask`** (CPM section) — that is task history, not a schedule indicator. See [eva_query_paterns.md](eva_query_paterns.md#identifying-accounts-with-scheduled-tasks).
+> **Identifying accounts with scheduled tasks**: presence of any `Task*` property below (typically `TaskName`, `TaskDefinitionId`, or `TaskScheduleType`) indicates the account has a scheduled task definition attached. **Do not use `LastTask`** (CPM section) — that is task history, not a schedule indicator. See [eva_query_patterns.md](eva_query_patterns.md#identifying-accounts-with-scheduled-tasks).
 
 | Property Name | Notes |
 |--------------|------|

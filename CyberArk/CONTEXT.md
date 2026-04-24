@@ -9,7 +9,7 @@ Read the user's request and route to the correct sub-workspace.
 | Querying vault data, SQL generation, CSV analysis                   | `EVD/CONTEXT.md`               |
 | Vault changes, remediation, psPAS commands                          | `psPAS/CONTEXT.md`             |
 | Direct REST API calls, building API functions/scripts, no psPAS     | `cyberark-api/CONTEXT.md`      |
-| API version tracking, per-version endpoint reference, version diffs | `api-evaluation/CONTEXT.md`    |
+| API version tracking, per-version endpoint reference, version diffs **(reference library — no live calls)** | `api-evaluation/CONTEXT.md`    |
 
 ## Cross-Workspace Flow
 
