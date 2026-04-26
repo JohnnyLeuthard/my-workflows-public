@@ -28,10 +28,10 @@ Enter `Self-hosted` or `Privilege Cloud` for each tier. Use `N/A` if that tier d
 |------------|------|------|------|---------------------------------------------|
 | Vault       | 14.4.2 | 14.4.2 | 14.4.2 | Core vault server version                   |
 | PVWA        | 14.4.2 | 14.4.2 | 14.4.2 | REST API paths and parameters vary by version |
-| CPM         |      |      |      | Plugin behavior and policy options          |
-| PSM         |      |      |      | Session recording and connection configuration |
+| CPM         | 14.4.2 |24.4.2|14.4.2|Plugin behavior and policy options          |
+| PSM         | 14.4.2| 14.4.2 |14.4.2|Session recording and connection configuration |
 | PSMP        | N/A  | N/A  | N/A  | SSH Proxy — mark N/A if not deployed        |
-| AAM / CCP   | N/A  | N/A  | N/A  | App credential retrieval — mark N/A if not deployed |
+| AAM / CCP   | 14.4| 14.4 | 14.4  | App credential retrieval — mark N/A if not deployed |
 | PTA         | N/A  | N/A  | N/A  | Privileged Threat Analytics — mark N/A if not in scope |
 | Conjur      | N/A  | N/A  | N/A  | Secrets Hub / DevOps secrets — mark N/A if not in scope |
 
