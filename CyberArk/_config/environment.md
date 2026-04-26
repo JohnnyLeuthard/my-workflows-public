@@ -41,9 +41,9 @@ Enter `Self-hosted` or `Privilege Cloud` for each tier. Use `N/A` if that tier d
 
 | Tool       | Version | Notes                                                   |
 |-----------|---------|----------------------------------------------------------|
-| psPAS     |         | Cmdlet availability and parameters vary significantly by version |
-| PowerShell |         | 5.1 vs 7.x affects syntax and module loading behavior   |
-| Python     |         | Used in EVD parsing stage — affects script compatibility |
+| psPAS     |  7.0.242 | Cmdlet availability and parameters vary significantly by version |
+| PowerShell | 5.1     | 5.1 vs 7.x affects syntax and module loading behavior   |
+| Python     |   3    | Used in EVD parsing stage — affects script compatibility |
 
 ---
 
