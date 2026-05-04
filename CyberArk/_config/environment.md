@@ -68,3 +68,20 @@ Enter the auth method used for each tier (`CyberArk`, `LDAP`, `SAML`, or `PKI`) 
 - **Deployment model**: Apply the correct guidance for the deployment model listed (self-hosted vs Privilege Cloud) — they have different API paths, feature sets, and behaviors.
 - **Environment ambiguity**: If the user has not specified which environment tier (DEV / UAT / PROD) they are working in, ask before proceeding with any destructive or high-consequence actions.
 - **Blank fields**: If a version field is blank, do not assume a version — ask the user to fill it in before giving version-dependent guidance.
+
+---
+
+## API Reference Documentation
+
+For REST API endpoint specifications, parameters, and request/response schemas for the PVWA version listed above, see `CyberArk/api-evaluation2/`. 
+
+**When to reference api-evaluation2:**
+- Looking up endpoint paths, HTTP methods, authentication requirements
+- Checking parameter names, types, and constraints
+- Finding request/response schemas and error codes
+- Comparing what changed between PVWA versions
+
+**If your PVWA version is not documented in api-evaluation2/versions/:**
+- ⚠️ Use the vendor docs directly: https://docs.cyberark.com/pam-self-hosted/{VERSION}/en/content/webservices/
+- Fetch with curl using a browser User-Agent header (automated web tools are blocked)
+- Follow the evaluation process in `api-evaluation2/versions/version-tracking.md` to document the version when ready

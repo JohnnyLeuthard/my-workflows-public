@@ -1,0 +1,55 @@
+# Security
+
+## Header
+
+| Field | Value |
+|-------|-------|
+| **File** | Security.md |
+| **Version** | 12.2 |
+| **Platform** | Self-Hosted |
+| **Source** | https://docs.cyberark.com/pam-self-hosted/12.2 |
+| **Build** | 8.2.5 |
+| **Status** | Complete |
+
+---
+
+## Overview
+
+| Aspect | Details |
+|--------|---------|
+| **Method(s)** | GET, PUT |
+| **Endpoint** | /api/Security |
+| **Description** | Manage vault security configuration |
+| **Auth Required** | Yes (Admin) |
+
+---
+
+## Purpose
+
+Configure SSL/TLS, encryption, and security policies.
+
+---
+
+## Full Path
+
+```
+GET /api/Security
+GET /api/Security/SSLCertificates
+PUT /api/Security/Encryption
+```
+
+---
+
+## Response Codes
+
+| Code | Status | Description |
+|------|--------|-------------|
+| 200 | OK | GET or PUT success |
+| 400 | Bad Request | Invalid parameters |
+| 401 | Unauthorized | Invalid token |
+| 403 | Forbidden | No admin permission |
+| 500 | Internal Server Error | Vault error |
+
+---
+
+**Last Updated**: 2026-05-03
