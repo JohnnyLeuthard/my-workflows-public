@@ -226,4 +226,4 @@ To update an endpoint file:
 ---
 
 **Last Updated**: [Initial scaffold — awaiting documentation fetch]  
-**Source**: https://docs.cyberark.com/pam-self-hosted/12.2/en/content/webservices/implementing%20privileged%20account%20security%20web%20services.htm
+**Source**: https://docs.cyberark.com/pam-self-hosted//en/content/sdk/api%20commands%20-%20readme%20web%20services.htm/en/content/webservices/implementing%20privileged%20account%20security%20web%20services.htm

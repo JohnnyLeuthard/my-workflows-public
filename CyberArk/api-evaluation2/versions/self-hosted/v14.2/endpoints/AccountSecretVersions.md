@@ -7,7 +7,7 @@
 | **File** | AccountSecretVersions.md |
 | **Version** | 14.2 |
 | **Platform** | Self-Hosted |
-| **Source** | https://docs.cyberark.com/pam-self-hosted/14.2 |
+| **Source** | https://docs.cyberark.com/pam-self-hosted/14.2/en/content/sdk/api%20commands%20-%20accountsecretversions%20web%20services.htm |
 | **Build** | 8.3.6 |
 | **Status** | Complete |
 | **New in v14.2** | Yes |

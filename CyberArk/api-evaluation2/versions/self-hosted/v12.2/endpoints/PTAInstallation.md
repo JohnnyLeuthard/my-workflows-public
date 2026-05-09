@@ -7,7 +7,7 @@
 | **File** | PTAInstallation.md |
 | **Version** | 12.2 |
 | **Platform** | Self-Hosted |
-| **Source** | https://docs.cyberark.com/pam-self-hosted/12.2 |
+| **Source** | https://docs.cyberark.com/pam-self-hosted/12.2/en/content/sdk/api%20commands%20-%20ptainstallation%20web%20services.htm |
 | **Build** | 8.2.5 |
 | **Status** | Complete |
 

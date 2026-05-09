@@ -48,5 +48,13 @@ Claude will ask you to fill in the file before giving version-dependent guidance
 | Folder | Purpose |
 |--------|---------|
 | `_config/` | Cross-pipeline configuration (naming standards, environment versions) |
+| `api-evaluation/` | Legacy/current stable API reference workspace for CyberArk PAM Self-Hosted REST API version evaluation |
+| `api-evaluation2/` | Next-generation platform-aware API reference workspace separating Self-Hosted and Privilege Cloud documentation |
 | `EVD/` | Export Vault Data — read-only vault queries |
 | `psPAS/` | PowerShell remediation — vault modifications |
+
+### API Evaluation Workspaces
+
+`api-evaluation2/` is not a backup copy of `api-evaluation/`. It is the redesigned, more shareable API reference model. The original `api-evaluation/` remains the stable Self-Hosted/on-prem focused workspace, while `api-evaluation2/` is being built out to support both Self-Hosted and Privilege Cloud references with separate version trees and report outputs.
+
+Once `api-evaluation2/` is fully built and validated, it is intended to replace the original `api-evaluation/` workspace.
