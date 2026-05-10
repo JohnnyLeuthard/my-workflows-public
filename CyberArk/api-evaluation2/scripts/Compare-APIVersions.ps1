@@ -158,8 +158,8 @@ if ($WhatIf) {
 Write-Host "Analyzing endpoints..." -ForegroundColor Green
 
 # Get endpoint files from both versions
-$FromEndpoints = @(Get-ChildItem -Path (Join-Path $FromFolder "endpoints") -Filter "*.md" -Exclude "README.md" -ErrorAction SilentlyContinue | Select-Object -ExpandProperty BaseName)
-$ToEndpoints = @(Get-ChildItem -Path (Join-Path $ToFolder "endpoints") -Filter "*.md" -Exclude "README.md" -ErrorAction SilentlyContinue | Select-Object -ExpandProperty BaseName)
+$FromEndpoints = @(Get-ChildItem -Path (Join-Path $FromFolder "endpoints") -Filter "*.md" -ErrorAction SilentlyContinue | Where-Object { $_.Name -ne "README.md" } | Select-Object -ExpandProperty BaseName)
+$ToEndpoints = @(Get-ChildItem -Path (Join-Path $ToFolder "endpoints") -Filter "*.md" -ErrorAction SilentlyContinue | Where-Object { $_.Name -ne "README.md" } | Select-Object -ExpandProperty BaseName)
 
 # Analyze differences
 $addedEndpoints = @($ToEndpoints | Where-Object { $_ -notin $FromEndpoints })
@@ -210,8 +210,8 @@ $($addedEndpoints | ForEach-Object { "- $_" } | Out-String)
 **Count**: $($addedEndpoints.Count)
 
 For details on each new endpoint, see:
-- `versions/$ToPlatformFolder/v$To/endpoints/` folder
-- `versions/$ToPlatformFolder/v$To/changelog.md`
+- ``versions/$ToPlatformFolder/v$To/endpoints/`` folder
+- ``versions/$ToPlatformFolder/v$To/changelog.md``
 
 ---
 

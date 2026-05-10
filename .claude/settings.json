@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "requiresPermission": [
+      "Bash(brew install)",
+      "Bash(brew upgrade)",
+      "Bash(brew uninstall)",
+      "Bash(pip install)",
+      "Bash(pip3 install)",
+      "Bash(npm install -g)",
+      "Bash(npm install --global)",
+      "Bash(yarn global add)",
+      "Bash(apt-get install)",
+      "Bash(apt install)",
+      "Bash(yum install)",
+      "Bash(pacman -S)",
+      "Bash(gem install)",
+      "Bash(cargo install)",
+      "Bash(go install)",
+      "Bash(conda install)",
+      "Bash(composer require)",
+      "Bash(sudo)",
+      "Bash(rm -rf)",
+      "Bash(git push)",
+      "Bash(git reset --hard)",
+      "Bash(git checkout --)"
+    ]
+  }
+}

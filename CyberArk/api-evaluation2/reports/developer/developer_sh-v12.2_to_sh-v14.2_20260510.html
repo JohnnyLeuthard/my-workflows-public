@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>developer_sh-v12.2_to_sh-v14.2_20260510</title>
+  <style>
+
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+  <style type="text/css">body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2em;
+  background: white;
+}
+h1 { border-bottom: 3px solid #0066cc; padding-bottom: 0.5em; }
+h2 { color: #0066cc; margin-top: 2em; }
+h3 { color: #005fa3; }
+table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+th, td { border: 1px solid #ddd; padding: 0.75em; text-align: left; }
+th { background: #f5f5f5; font-weight: 600; }
+code { background: #f5f5f5; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace; }
+pre { background: #f5f5f5; padding: 1em; border-radius: 5px; overflow-x: auto; }
+pre code { background: none; padding: 0; }
+a { color: #0066cc; }
+ul, ol { margin: 1em 0; }
+</style>
+</head>
+<body>
+<h1 id="developer-migration-guide-cyberark-self-hosted-v12.2-v14.2">Developer
+Migration Guide: CyberArk Self-Hosted v12.2 → v14.2</h1>
+<p><strong>Platform</strong>: Self-Hosted<br />
+<strong>Report Date</strong>: May 10, 2026<br />
+<strong>From Version</strong>: v12.2 (Build 8.2.5)<br />
+<strong>To Version</strong>: v14.2 (Build 8.3.6)<br />
+<strong>Audience</strong>: Engineers, integration owners, API
+consumers<br />
+<strong>Data Source</strong>:
+<code>exports/comparison_sh-v12.2_to_sh-v14.2_20260510.md</code></p>
+<hr />
+<h2 id="at-a-glance">At a Glance</h2>
+<p>The upgrade from v12.2 to v14.2 adds three new endpoints without
+removing or breaking existing ones. All 25 endpoints from v12.2 remain
+functional and compatible. The upgrade is low-risk for existing
+integrations.</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Count</th>
+<th>Assessment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Breaking changes</td>
+<td>0</td>
+<td>No action required</td>
+</tr>
+<tr>
+<td>New endpoints available</td>
+<td>3</td>
+<td>Optional adoption</td>
+</tr>
+<tr>
+<td>Endpoints removed</td>
+<td>0</td>
+<td>Full compatibility</td>
+</tr>
+<tr>
+<td>Core API compatibility</td>
+<td>25/25</td>
+<td>No deprecations</td>
+</tr>
+<tr>
+<td><strong>Overall migration effort</strong></td>
+<td>Low</td>
+<td>Safe to upgrade</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="new-endpoints-evaluate-for-adoption">New Endpoints — Evaluate
+for Adoption</h2>
+<p>Three new endpoints are available in v14.2. Adoption is optional;
+existing code continues to work without changes.</p>
+<h3 id="accountsecretversions">1. AccountSecretVersions</h3>
+<p><strong>Endpoint</strong>:
+<code>GET /api/Accounts/{AccountID}/Secret/Versions</code></p>
+<p><strong>What it does</strong>: Retrieve the password change history
+for an account, including timestamps and version metadata. Useful for
+compliance audits, incident investigations, and tracking secret
+rotation.</p>
+<p><strong>When to adopt</strong>: If your organization needs to audit
+password history or implement rotation tracking without querying
+external systems.</p>
+<p><strong>Parameters</strong>: - <code>AccountID</code> (required): The
+account ID - <code>limit</code> (optional): Number of versions per page
+(default 50) - <code>offset</code> (optional): Pagination offset
+(default 0)</p>
+<p><strong>Example</strong>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Retrieve password history for account 123</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="va">$response</span> <span class="op">=</span> <span class="fu">Invoke-RestMethod</span> `</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>Uri <span class="st">&quot;https://vault/api/Accounts/123/Secret/Versions?limit=100&quot;</span> `</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>Headers @<span class="op">{</span> Authorization <span class="op">=</span> <span class="st">&quot;CyberArk </span><span class="va">$sessionToken</span><span class="st">&quot;</span> <span class="op">}</span> `</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>Method Get</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Returns array of version objects with timestamps</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="va">$response</span> <span class="op">|</span> <span class="fu">ForEach-Object</span> <span class="op">{</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Write-Host</span> <span class="st">&quot;Version: </span><span class="op">$(</span><span class="va">$_</span><span class="op">.</span><span class="fu">VersionNumber</span><span class="op">)</span><span class="st"> - Changed: </span><span class="op">$(</span><span class="va">$_</span><span class="op">.</span><span class="fu">ChangeTime</span><span class="op">)</span><span class="st">&quot;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p><strong>Reference</strong>:
+<code>versions/self-hosted/v14.2/endpoints/AccountSecretVersions.md</code></p>
+<hr />
+<h3 id="authenticationmethodsconfiguration">2.
+AuthenticationMethodsConfiguration</h3>
+<p><strong>Endpoint</strong>:
+<code>GET /api/AuthenticationMethodsConfiguration</code>,
+<code>PUT /api/AuthenticationMethodsConfiguration</code></p>
+<p><strong>What it does</strong>: Manage global authentication method
+settings (MFA requirements, session timeouts, allowed authentication
+types). Enables programmatic control over vault-wide authentication
+policies.</p>
+<p><strong>When to adopt</strong>: If you need to enforce authentication
+policies across your vault or integrate authentication configuration
+into your IAM workflows.</p>
+<p><strong>Methods</strong>: - <strong>GET</strong>: Retrieve current
+authentication method configuration - <strong>PUT</strong>: Update
+authentication method settings</p>
+<p><strong>Example</strong>:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get current authentication configuration</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="va">$currentConfig</span> <span class="op">=</span> <span class="fu">Invoke-RestMethod</span> `</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>Uri <span class="st">&quot;https://vault/api/AuthenticationMethodsConfiguration&quot;</span> `</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>Headers @<span class="op">{</span> Authorization <span class="op">=</span> <span class="st">&quot;CyberArk </span><span class="va">$sessionToken</span><span class="st">&quot;</span> <span class="op">}</span> `</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>Method Get</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Update to require MFA for all users</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="va">$newConfig</span> <span class="op">=</span> @<span class="op">{</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  RequireMFA <span class="op">=</span> <span class="va">$true</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  SessionTimeout <span class="op">=</span> <span class="dv">30</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  AllowedMethods <span class="op">=</span> <span class="op">@(</span><span class="st">&quot;LDAP&quot;</span><span class="op">,</span> <span class="st">&quot;SAML&quot;</span><span class="op">,</span> <span class="st">&quot;OTP&quot;</span><span class="op">)</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="va">$response</span> <span class="op">=</span> <span class="fu">Invoke-RestMethod</span> `</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>Uri <span class="st">&quot;https://vault/api/AuthenticationMethodsConfiguration&quot;</span> `</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>Headers @<span class="op">{</span> Authorization <span class="op">=</span> <span class="st">&quot;CyberArk </span><span class="va">$sessionToken</span><span class="st">&quot;</span> <span class="op">}</span> `</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>Method Put `</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>Body <span class="op">(</span><span class="va">$newConfig</span> <span class="op">|</span> <span class="fu">ConvertTo-Json</span><span class="op">)</span></span></code></pre></div>
+<p><strong>Reference</strong>:
+<code>versions/self-hosted/v14.2/endpoints/AuthenticationMethodsConfiguration.md</code></p>
+<hr />
+<h3 id="ptaadministration">3. PTAAdministration</h3>
+<p><strong>Endpoint</strong>: <code>GET /api/PTAAdministration</code>,
+<code>PUT /api/PTAAdministration</code></p>
+<p><strong>What it does</strong>: Manage Privileged Threat Analytics
+settings (threat detection thresholds, alerting rules, policy
+enforcement). Enables programmatic tuning of PTA behavior without UI
+access.</p>
+<p><strong>When to adopt</strong>: If you run Privilege Threat Analytics
+and need to adjust detection policies or integrate PTA configuration
+into your security operations workflow.</p>
+<p><strong>Methods</strong>: - <strong>GET</strong>: Retrieve current
+PTA configuration - <strong>PUT</strong>: Update PTA detection
+thresholds and policies</p>
+<p><strong>Example</strong>:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get current PTA settings</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="va">$ptaConfig</span> <span class="op">=</span> <span class="fu">Invoke-RestMethod</span> `</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>Uri <span class="st">&quot;https://vault/api/PTAAdministration&quot;</span> `</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>Headers @<span class="op">{</span> Authorization <span class="op">=</span> <span class="st">&quot;CyberArk </span><span class="va">$sessionToken</span><span class="st">&quot;</span> <span class="op">}</span> `</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>Method Get</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Adjust threat detection sensitivity</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="va">$ptaConfig</span><span class="op">.</span><span class="fu">ThreatThreshold</span> <span class="op">=</span> <span class="st">&quot;Medium&quot;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="va">$ptaConfig</span><span class="op">.</span><span class="fu">AlertOnSuspiciousActivity</span> <span class="op">=</span> <span class="va">$true</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="va">$response</span> <span class="op">=</span> <span class="fu">Invoke-RestMethod</span> `</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>Uri <span class="st">&quot;https://vault/api/PTAAdministration&quot;</span> `</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>Headers @<span class="op">{</span> Authorization <span class="op">=</span> <span class="st">&quot;CyberArk </span><span class="va">$sessionToken</span><span class="st">&quot;</span> <span class="op">}</span> `</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>Method Put `</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>Body <span class="op">(</span><span class="va">$ptaConfig</span> <span class="op">|</span> <span class="fu">ConvertTo-Json</span><span class="op">)</span></span></code></pre></div>
+<p><strong>Reference</strong>:
+<code>versions/self-hosted/v14.2/endpoints/PTAAdministration.md</code></p>
+<hr />
+<h2 id="existing-endpoints-no-breaking-changes">Existing Endpoints — No
+Breaking Changes</h2>
+<p>All 25 endpoints from v12.2 remain fully compatible. No changes to
+paths, required parameters, response formats, or authentication
+methods.</p>
+<p><strong>Verified compatible endpoints</strong>:</p>
+<p>AccountActions, AccountGroups, Accounts, Applications,
+Authentication, BulkUpload, DiscoveredAccounts, General, Groups,
+LDAPIntegration, LinkedAccounts, MonitorSessions, OnboardingRules,
+OPMCommands, Platforms, PTAInstallation, Requests, Safes, Security,
+Server, SessionManagement, SSHKeys, SystemHealth, UsageExamples,
+Users</p>
+<p><strong>Action required</strong>: None. Existing integrations do not
+need code changes.</p>
+<hr />
+<h2 id="migration-checklist">Migration Checklist</h2>
+<h3 id="pre-upgrade-assessment">Pre-Upgrade Assessment</h3>
+<ul class="task-list">
+<li><label><input type="checkbox"></input>Review the three new endpoints
+above</label></li>
+<li><label><input type="checkbox"></input>Assess whether any new endpoints
+benefit your current workflows</label></li>
+<li><label><input type="checkbox"></input>Confirm no code depends on endpoints
+listed as removed (there are none)</label></li>
+<li><label><input type="checkbox"></input>Check for any custom auth token
+generation that might conflict</label></li>
+</ul>
+<h3 id="testing-in-dev">Testing in Dev</h3>
+<ul class="task-list">
+<li><label><input type="checkbox"></input>Deploy v14.2 to DEV
+environment</label></li>
+<li><label><input type="checkbox"></input>Run existing integration tests
+against all 25 common endpoints</label></li>
+<li><label><input type="checkbox"></input>Test all results pass without code
+changes</label></li>
+<li><label><input type="checkbox"></input>If adopting new endpoints, test them
+in isolation first</label></li>
+<li><label><input type="checkbox"></input>Test new endpoints with your
+authentication method (session tokens, LDAP, SAML)</label></li>
+</ul>
+<h3 id="pre-production">Pre-Production</h3>
+<ul class="task-list">
+<li><label><input type="checkbox"></input>Code review (if adopting new
+endpoints)</label></li>
+<li><label><input type="checkbox"></input>Test against v14.2 in UAT with live
+data</label></li>
+<li><label><input type="checkbox"></input>Run load tests to confirm
+performance is consistent</label></li>
+<li><label><input type="checkbox"></input>Get sign-off from operations team
+before production deployment</label></li>
+</ul>
+<h3 id="upgrade-execution">Upgrade Execution</h3>
+<ul class="task-list">
+<li><label><input type="checkbox"></input>Schedule maintenance window if
+required by your deployment</label></li>
+<li><label><input type="checkbox"></input>Verify all custom scripts still
+execute without error</label></li>
+<li><label><input type="checkbox"></input>Monitor API error logs for the first
+24 hours</label></li>
+<li><label><input type="checkbox"></input>Test critical workflows
+end-to-end</label></li>
+<li><label><input type="checkbox"></input>Confirm all metrics and dashboards
+are still updating</label></li>
+</ul>
+<h3 id="post-upgrade">Post-Upgrade</h3>
+<ul class="task-list">
+<li><label><input type="checkbox"></input>Collect baseline performance metrics
+(API latency, throughput, error rates)</label></li>
+<li><label><input type="checkbox"></input>Document any workarounds or issues
+discovered</label></li>
+<li><label><input type="checkbox"></input>Update internal API documentation to
+reference v14.2 endpoints</label></li>
+<li><label><input type="checkbox"></input>Archive v12.2 endpoint docs for
+historical reference</label></li>
+</ul>
+<hr />
+<h2 id="code-review-checklist">Code Review Checklist</h2>
+<p>Areas to focus on when reviewing v14.2 code.</p>
+<ul class="task-list">
+<li><label><input type="checkbox"></input><strong>Auth flow</strong>: Confirm
+session token generation still works (no breaking changes)</label></li>
+<li><label><input type="checkbox"></input><strong>Error handling</strong>:
+Test response codes for existing endpoints (should match
+v12.2)</label></li>
+<li><label><input type="checkbox"></input><strong>Pagination</strong>:
+Limit/offset parameters work the same for list endpoints</label></li>
+<li><label><input type="checkbox"></input><strong>Date formats</strong>: No
+changes to ISO 8601 formatting across endpoints</label></li>
+<li><label><input type="checkbox"></input><strong>Null handling</strong>: New
+optional fields shouldn’t break existing parsing logic</label></li>
+<li><label><input type="checkbox"></input><strong>Rate limiting</strong>:
+Confirm rate limit headers are present and consistent</label></li>
+</ul>
+<hr />
+<h2 id="related-resources">Related Resources</h2>
+<ul>
+<li><strong>Full endpoint specifications</strong>:
+<code>versions/self-hosted/v14.2/endpoints/</code></li>
+<li><strong>Version changelog</strong>:
+<code>versions/self-hosted/v14.2/changelog.md</code></li>
+<li><strong>Raw comparison data</strong>:
+<code>exports/comparison_sh-v12.2_to_sh-v14.2_20260510.md</code></li>
+<li><strong>Manager summary</strong>: <code>reports/manager/</code>
+(stakeholder-focused overview)</li>
+<li><strong>CyberArk official docs</strong>:
+https://docs.cyberark.com/pam-self-hosted/14.2/</li>
+</ul>
+<hr />
+<p><strong>Last Updated</strong>: May 10, 2026<br />
+<strong>Template Version</strong>: 1.0<br />
+<strong>Generated By</strong>: Compare-APIVersions.ps1 + Developer
+Report Generator</p>
+</body>
+</html>

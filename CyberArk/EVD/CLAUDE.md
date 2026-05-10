@@ -59,6 +59,23 @@ When the user activates or asks you to work on a specific stage, **load only tha
 
 ---
 
+## Data Interpretation Rules
+
+### LastTask vs. TaskName: Scheduled Task Queries
+
+When a request asks for "accounts with scheduled tasks," "recurring tasks," "task schedules," or similar, **you must filter on `TaskName`, `TaskDefinitionId`, or `TaskScheduleType`** from the CyberArk task scheduling property family. **Never use `LastTask`** as an indicator of scheduled tasks.
+
+**Why this matters**: `LastTask` is a CPM (Central Password Manager) history field that records when the password was **last changed**. It has nothing to do with task scheduling. Using it to filter for accounts with scheduled tasks returns completely wrong results.
+
+**How to apply**:
+- **SQL Gen (Stage 01)**: When writing a query for accounts with scheduled tasks, use `TaskName`, `TaskDefinitionId`, or `TaskScheduleType`. Reference the appropriate schema file in `references/` to get the exact column names for your PVWA version.
+- **Compliance Parsing (Stage 03)**: If you're analyzing vault data for accounts that should have scheduled tasks, verify the query used `TaskScheduleType` or `TaskName`, not `LastTask`.
+- **Remediation Planning (Stage 04)**: When suggesting remediation for missing task schedules, confirm the root cause analysis was based on the correct task scheduling properties.
+
+**Reference**: See `CyberArk/EVD/references/eva_query_patterns.md` for example queries that correctly use task scheduling properties.
+
+---
+
 ## Navigation for Agents
 
 **You are reading this because you are an AI agent helping with the EVD pipeline.**

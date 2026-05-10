@@ -1,0 +1,33 @@
+# .cursorrules for my-workflows-public
+
+You are operating in a repository using MWP (Model Workspace Protocol). Read the canonical rules at /AGENTS.md before proceeding.
+
+## Navigation Rules (MWP)
+
+- Always read CONTEXT.md at the current folder before opening sub-folders
+- Do not preload files — route first, then load only what you need
+- Recursively follow CLAUDE.md → CONTEXT.md chains as you descend into sub-workspaces
+- Do not treat clief-notes/ as an active workspace; it is reference material only
+
+## Critical Constraints
+
+**Do not install packages without asking** — even if you think you need a dependency, stop and ask the user first.
+
+**No fake data** — never generate sample query results or mock CSVs. Run actual scripts or say you can't.
+
+**No inline code** — point to scripts in the workspace instead of writing code to paste.
+
+**Stage review gates** — if you're in a CyberArk pipeline (EVD, psPAS), stop after each stage output and await human approval before proceeding.
+
+**EVD domain rule** — for "accounts with scheduled tasks" queries, filter on TaskName/TaskDefinitionId/TaskScheduleType, never LastTask.
+
+## Key File Paths
+
+- Schema reference: CyberArk/EVD/references/ (authoritative for column names and types)
+- SQL execution: CyberArk/EVD/scripts/Invoke-EVDQuery.ps1
+- Pipeline stages: CyberArk/EVD/stages/[01_sql_gen|02_data_fetch|03_parsing|04_remediation]/
+- EVD output: CyberArk/EVD/stages/*/output/
+
+## For More Details
+
+Read AGENTS.md at the repository root for the complete rule set and examples.
