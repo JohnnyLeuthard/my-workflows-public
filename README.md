@@ -15,3 +15,4 @@ This repo is itself an MWP (Model Workspace Protocol) workspace. Entry points ar
 
 The `clief-notes/` directory contains examples/tutorials from **Clief-Notes**. Full credit to his Skool community:
 [Clief-Notes on Skool](https://www.skool.com/quantum-quill-lyceum-1116/about)
+
