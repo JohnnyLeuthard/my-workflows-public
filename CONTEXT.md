@@ -7,6 +7,7 @@ Read the user's request and route to the correct sub-workspace.
 | If the request involves...                                              | Route to...                |
 |-------------------------------------------------------------------------|----------------------------|
 | CyberArk vault operations — EVD queries, psPAS remediation, REST API    | [CyberArk/CONTEXT.md](CyberArk/CONTEXT.md)   |
+| Docker setup, n8n guides, Tailscale, GitHub tokens, infrastructure how-tos | [tech-guides/CONTEXT.md](tech-guides/CONTEXT.md) |
 
 *More sub-workspaces will be added over time. See "Adding a sub-workspace" below.*
 
