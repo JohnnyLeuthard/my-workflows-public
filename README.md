@@ -11,6 +11,14 @@ This repo is itself an MWP (Model Workspace Protocol) workspace. Entry points ar
 | [CyberArk/](CyberArk/) | My own active workspace — CyberArk vault automation using the Model Workspace Protocol (MWP). |
 | [clief-notes/](clief-notes/) | **Reference only.** Example workspaces and tutorials from the Clief-Notes Skool community (`The Foundation/`, `Folder Structure/`). See [clief-notes/README.md](clief-notes/README.md). |
 
+## Showcase
+
+Standalone tools and projects built in public:
+
+| Project | What it is |
+|---------|-----------|
+| [claude-manager](https://github.com/JohnnyLeuthard/claude-manager) | Reference guide and cleanup toolkit for the `~/.claude` folder created by Claude Code. Comprehensive documentation on what's in your Claude folder, why each item exists, and what's safe to delete. |
+
 ## Credit
 
 The `clief-notes/` directory contains examples/tutorials from **Clief-Notes**. Full credit to his Skool community:
