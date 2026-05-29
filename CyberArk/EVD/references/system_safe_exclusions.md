@@ -5,6 +5,25 @@
 
 ---
 
+## Local Configuration Required
+
+This file includes a generic baseline of common CyberArk system and infrastructure safes.
+
+Before running production reports in a new vault, review this catalog and update it for the local environment:
+
+| Action | When to do it |
+|--------|---------------|
+| Add exclusions | Your vault has custom infrastructure, integration, discovery, migration, or administrative safes that should not appear in normal account reports. |
+| Remove exclusions | A listed safe or pattern is used for real business accounts in your vault and should appear in reports. |
+| Narrow patterns | A `LIKE` pattern would exclude too much in your naming model. |
+| Document exceptions | A safe looks like system data but should be intentionally included for certain reports. |
+
+After changing this file, review query templates that embed system safe exclusions and update them if needed.
+
+Expect to refine this list iteratively. If results include noisy infrastructure safes, add exclusions. If results are missing legitimate business safes, remove or narrow exclusions.
+
+---
+
 ## Default Behavior
 
 **Exclude all system safes** listed below unless the user explicitly requests otherwise.
@@ -143,7 +162,7 @@ AND {safe} NOT LIKE 'CPM_%_info-rest'
 -- PSM
 AND {safe} NOT IN (
     'PSM',
-    'PSM-PA-',
+    'PSM-%',
     'PSMSessions',
     'PSMLiveSessions',
     'PSMNotifications',

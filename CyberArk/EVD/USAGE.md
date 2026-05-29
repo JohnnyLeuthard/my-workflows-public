@@ -4,11 +4,13 @@ This guide walks you through using the Export Vault Data (EVD) pipeline to extra
 
 You don't need to know SQL, PowerShell, or the CyberArk database schema. The AI handles all of that. You just describe what you need in plain English and review the results at each step.
 
+This repository is intended to be adapted. CyberArk vaults vary in schema usage, safe naming, platform IDs, custom properties, exclusions, and operational conventions. Expect some tuning before it aligns fully with your environment. The normal refinement loop is: ask a question, review the generated SQL, run it, inspect the CSV, then tell the AI what needs to change.
+
 ---
 
 ## What This Pipeline Does
 
-The EVD pipeline turns a plain English request into a vault data report through three stages:
+The EVD pipeline turns a plain English request into a vault data report through four stages. Stage 4 is optional.
 
 ```
 You describe what you need
@@ -29,10 +31,17 @@ You describe what you need
     You review
         |
         v
-Final report
+[Stage 4: Remediation Plan] -- Optional prioritized action plan
+        |
+    You review
+        |
+        v
+Final report or plan
 ```
 
 Every stage stops and waits for your approval before moving on. Nothing runs without your say-so.
+
+The first query may not be perfect. Use the review gates to correct assumptions, add missing filters, update exclusions, improve naming standards, or turn a useful query into a reusable template.
 
 ### What you get
 
@@ -43,20 +52,36 @@ Every stage stops and waits for your approval before moving on. Nothing runs wit
 | 3 — Compliance | `stages/03_parsing/output/compliance_report.md` | Flagged violations with rule IDs and severity |
 | 4 — Remediation | `stages/04_remediation/output/remediation_plan.md` | Prioritized action list with recommended fixes |
 
+These file names and locations are the canonical EVD output artifact standards. See `references/output_artifact_standards.md`.
+
+Vault naming standards are separate: `references/naming_standards.md` applies to CyberArk vault data such as safe names, platform IDs, account object names, and compliance rule IDs.
+
+### File flow in plain English
+
+Think of each stage's `output/` folder as the current workbench. The file directly inside `output/` is the active file for the current run. If you want to keep an old result before replacing it, put it in that same stage's `output/archive/` folder.
+
+| Need | Where it goes |
+|------|---------------|
+| Current SQL to review or run | `stages/01_sql_gen/output/query.sql` |
+| Current CSV export to review or parse | `stages/02_data_fetch/output/vault_data.csv` |
+| Current compliance report | `stages/03_parsing/output/compliance_report.md` |
+| Current remediation plan | `stages/04_remediation/output/remediation_plan.md` |
+| Previous outputs you want to keep | the matching stage's `output/archive/` folder |
+| Reusable SQL pattern | `references/query_templates/` |
+
+You can run the flow manually, ask AI to move it through each stage, or use a hybrid approach. The important rule is that the next stage reads the active file, not a random file from archive.
+
+When you archive a SQL/CSV pair from the same request, use the same `short-purpose` name so they are easy to find together, for example `2026-05-29__domain-accounts-not-rotated-30-days.sql` and `2026-05-29__domain-accounts-not-rotated-30-days.csv`.
+
 ---
 
 ## Before You Start
 
 ### 1. Database access
 
-You need Windows AD group membership to query the EVD database:
+You need, at minimum, read access to the target CyberArk EVD database.
 
-| Environment | Required AD Groups |
-|-------------|-------------------|
-| **Prod** | `<ORG>_Prod_EPVEVD_CyberArk_USR_RO` and `<ORG>_Prod_EPVEVD_Reporting_USR_RO` |
-| **UAT / Dev** | `<ORG>_UAT_EPVEVD_CyberArk_USR_RO` and `<ORG>_UAT_EPVEVD_Reporting_USR_RO` |
-
-Standad rules and workflows need to be followed to request access to the AD group.
+Follow your organization's normal process for requesting that access. Before running Stage 2, confirm that your account can connect to the SQL Server and query the EVD database.
 
 ### 2. Configure the connection
 
@@ -74,7 +99,36 @@ Open `EVD.psd1` in this folder and fill in the server names for each environment
 
 Replace `<DEV_SERVER_NAME>`, `<UAT_SERVER_NAME>`, and `<PROD_SERVER_NAME>` with the actual SQL Server hostnames. Leave everything else as-is unless you know it needs to change.
 
-### 3. PowerShell requirements
+### 3. Configure vault naming standards
+
+Open `references/naming_standards.md` and replace the placeholder examples with the naming rules used in your vault.
+
+At minimum, review and update:
+
+| Section | What to configure |
+|---------|-------------------|
+| Safe naming convention | Safe name pattern, allowed account types, technologies, environments, and known exceptions |
+| Platform naming convention | Valid CyberArk Platform IDs for each technology or safe category |
+| Account object naming convention | How account object names are built and which properties each segment maps to |
+| Compliance rules | Rule severity and checks that Stage 3 should report |
+
+Stage 3 compliance parsing depends on this file. If it still contains placeholder examples, compliance findings may be incomplete or misleading.
+
+### 4. Review system safe exclusions
+
+Open `references/system_safe_exclusions.md` and review the default exclusions for your vault.
+
+The file contains a generic baseline of common CyberArk system and infrastructure safes. Add custom safes that should be filtered out of normal account reports, and remove or narrow any exclusions that do not apply in your environment.
+
+These exclusions are applied by default when queries touch safes, unless you explicitly ask to include system safes.
+
+### 5. Review query templates
+
+Templates live in `references/query_templates/`, with the catalog in `references/query_templates/_INDEX.md`.
+
+Templates are optional starting points for common requests. Before relying on them in a new environment, review the template SQL and adjust filters, columns, thresholds, platform assumptions, naming-standard dependencies, and system safe exclusions to match your vault.
+
+### 6. PowerShell requirements
 
 - PowerShell 5.1 or later (comes with Windows)
 - Network access to the SQL Server from your machine
@@ -97,6 +151,8 @@ Start a conversation with the AI and describe the vault data you want. Use plain
 > "Get me a count of accounts per platform for the Windows Server safes."
 
 > "Show me accounts that haven't had a successful password change in over 90 days."
+
+> "Create an EVD query that shows all domain accounts not rotated in the last 30 days."
 
 The AI will:
 1. Read the database schema to identify the right tables and columns
@@ -174,6 +230,8 @@ The AI will load the matching template, show you the SQL with any customization 
 
 ### Available Templates
 
+Templates are optional starting points for common requests. They live in `references/query_templates/`, with the catalog in `references/query_templates/_INDEX.md`. Review them for your environment before relying on them.
+
 | Template | What it answers |
 |----------|-----------------|
 | **Stale Accounts** | Accounts not checked out by a human in N days |
@@ -202,11 +260,17 @@ Each template is fully customizable — thresholds, safe filters, and output col
 
 You get a SQL query, run it, and have your CSV. No compliance parsing needed.
 
-### Compliance audit (all 3 stages)
+### Compliance report (Stages 1-3)
 
 > "Show me all Windows accounts with their safe names and platforms — I need to check naming compliance."
 
 The AI generates SQL, you run it, then the AI analyzes the results against naming rules and flags non-compliant accounts.
+
+### Compliance plus remediation plan (Stages 1-4)
+
+> "Show me all Windows accounts with their safe names and platforms, check naming compliance, and build a remediation plan."
+
+The AI generates SQL, you run it, the AI analyzes the results, and then Stage 4 turns the findings into a prioritized remediation plan.
 
 ### Ad-hoc investigation
 
@@ -248,13 +312,17 @@ EVD/
 │   └── query_templates/     <-- 13 pre-built SQL templates for common tasks
 └── stages/
     ├── 01_sql_gen/
-    │   └── output/          <-- Generated SQL lands here
+    │   └── output/          <-- Active SQL lands here
+    │       └── archive/     <-- Retained SQL history
     ├── 02_data_fetch/
-    │   └── output/          <-- CSV data lands here
+    │   └── output/          <-- Active CSV lands here
+    │       └── archive/     <-- Retained CSV history
     ├── 03_parsing/
-    │   └── output/          <-- Compliance report lands here
+    │   └── output/          <-- Active compliance report lands here
+    │       └── archive/     <-- Retained report history
     └── 04_remediation/
-        └── output/          <-- Remediation plan lands here
+        └── output/          <-- Active remediation plan lands here
+            └── archive/     <-- Retained plan history
 ```
 
 ---
@@ -266,7 +334,7 @@ EVD/
 | "EVD.psd1 not found" | AI ran the script from the wrong directory | Tell it to run from the `EVD/` folder |
 | "Environment 'X' not found" | Typo in `-Environment` parameter | Use exactly `Dev`, `UAT`, or `Prod` |
 | Connection timeout | Network or firewall issue | Verify you can reach the SQL Server; check VPN |
-| Access denied | Missing AD group membership | Request the appropriate AD group (see table above) |
+| Access denied | Missing database read access | Request read access to the target CyberArk EVD database through your organization's normal access process |
 | Zero rows returned | Query filters too narrow, or targeting wrong environment | Check your request and try `-Environment Dev` for testing |
 | CSV has garbled characters | Excel encoding mismatch | Import via Data > From Text/CSV in Excel, select UTF-8 |
 | Stage 3 produces no findings | Either data is clean (good) or the query didn't include the columns Stage 3 needs | If unexpected, re-check Stage 2 CSV has AccountName and SafeName columns; confirm naming_standards.md is filled in |
@@ -275,6 +343,8 @@ EVD/
 ---
 
 ## Walkthrough Example
+
+This walkthrough is illustrative. The SQL shape, row count, timing, server names, and sample CSV rows are examples only, not real vault output.
 
 **Goal**: Find all accounts in SA (Service Account) safes that are NOT on a SNOW2 platform.
 
@@ -290,31 +360,31 @@ The AI reads the database schema, applies the system safe exclusions, and produc
 
 ```sql
 SELECT
-    f.CAFSafeName       AS SafeName,
-    f.CAFFileName        AS AccountName,
-    addr.CAOPObjectPropertyValue   AS Address,
-    uname.CAOPObjectPropertyValue  AS UserName,
-    pol.CAOPObjectPropertyValue    AS PlatformID
+    f.CAFSafeName                   AS SafeName,
+    f.CAFFileName                   AS AccountName,
+    MAX(CASE WHEN op.CAOPObjectPropertyName = 'Address'
+             THEN op.CAOPObjectPropertyValue END) AS Address,
+    MAX(CASE WHEN op.CAOPObjectPropertyName = 'UserName'
+             THEN op.CAOPObjectPropertyValue END) AS UserName,
+    MAX(CASE WHEN op.CAOPObjectPropertyName = 'PolicyID'
+             THEN op.CAOPObjectPropertyValue END) AS PlatformID
 FROM dbo.CAFiles f
-LEFT JOIN dbo.CAObjectProperties addr
-    ON addr.CAOPFileID = CAST(f.CAFFileID AS int)
-    AND addr.CAOPSafeID = f.CAFSafeID
-    AND addr.CAOPObjectPropertyName = 'Address'
-LEFT JOIN dbo.CAObjectProperties uname
-    ON uname.CAOPFileID = CAST(f.CAFFileID AS int)
-    AND uname.CAOPSafeID = f.CAFSafeID
-    AND uname.CAOPObjectPropertyName = 'UserName'
-LEFT JOIN dbo.CAObjectProperties pol
-    ON pol.CAOPFileID = CAST(f.CAFFileID AS int)
-    AND pol.CAOPSafeID = f.CAFSafeID
-    AND pol.CAOPObjectPropertyName = 'PolicyID'
+LEFT JOIN dbo.CAObjectProperties op
+    ON op.CAOPFileID = CAST(f.CAFFileID AS int)
+    AND op.CAOPSafeID = f.CAFSafeID
 WHERE f.CAFType = 2
     AND f.CAFDeletionDate IS NULL
     AND f.CAFSafeName LIKE 'SA%'
-    AND (pol.CAOPObjectPropertyValue IS NULL
-         OR pol.CAOPObjectPropertyValue <> 'SNOW2')
     -- System safe exclusions applied automatically
     AND f.CAFSafeName NOT IN ('System', 'VaultInternal', ...)
+GROUP BY
+    f.CAFSafeName,
+    f.CAFFileName
+HAVING
+    MAX(CASE WHEN op.CAOPObjectPropertyName = 'PolicyID'
+             THEN op.CAOPObjectPropertyValue END) IS NULL
+    OR MAX(CASE WHEN op.CAOPObjectPropertyName = 'PolicyID'
+                THEN op.CAOPObjectPropertyValue END) <> 'SNOW2'
 ORDER BY f.CAFSafeName, f.CAFFileName;
 ```
 
@@ -335,17 +405,17 @@ The AI will revise the query. When it looks right, tell it to proceed.
 
 ### Step 4 — Run the query (Stage 2)
 
-Tell the AI to proceed. It runs the query script for you and reports back:
+Tell the AI to proceed, or run the Stage 2 command yourself. The script reports a row count and export path, for example:
 
 ```
 query 347 rows | 00:00:02.41 | CSV: vault_data.csv
 ```
 
-You don't need to open a terminal or run anything manually.
+If you prefer manual execution, run the Stage 2 command from the `EVD/` folder instead.
 
 ### Step 5 — Review the data
 
-Open `stages/02_data_fetch/output/vault_data.csv`. You'll see something like:
+Open `stages/02_data_fetch/output/vault_data.csv`. In a real run, this file contains your actual vault data. The rows below are illustrative:
 
 | SafeName | AccountName | Address | UserName | PlatformID |
 |----------|-------------|---------|----------|------------|
@@ -353,7 +423,7 @@ Open `stages/02_data_fetch/output/vault_data.csv`. You'll see something like:
 | SA-Windows-Prod | Operating System-WinServ-svc_backup-... | server02.domain.com | svc_backup | WinServerLocal |
 | SA-Oracle-Dev | Database-OracleDB-svc_dbmon-... | oradb01.domain.com | svc_dbmon | OracleDB |
 
-These are the accounts in SA safes that are NOT on SNOW2 — exactly what you asked for.
+In a real run, the CSV should contain the accounts that match your reviewed SQL criteria.
 
 ### Step 6 — Done (or continue to compliance)
 

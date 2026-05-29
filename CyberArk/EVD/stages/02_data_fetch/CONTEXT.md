@@ -4,7 +4,7 @@
 
 ## Inputs
 
-- **Layer 4 (Working)**: `stages/01_sql_gen/output/query.sql` — The SQL query generated and approved in Stage 1 (absolute path from EVD folder root).
+- **Layer 4 (Working)**: `stages/01_sql_gen/output/query.sql` — The SQL query generated and approved in Stage 1 (canonical path from the EVD folder root).
 - **Layer 3 (Reference)**: `EVD.psd1` — EVD database connection configuration for Dev/UAT/Prod environments, located in the EVD folder root.
 
 ## Process
@@ -41,7 +41,7 @@ The agent will run the equivalent command in a terminal and report the results.
 
 ## Outputs
 
-- **CSV data export** → `stages/02_data_fetch/output/vault_data.csv` (absolute path from EVD folder root)
+- **CSV data export** → `stages/02_data_fetch/output/vault_data.csv` (canonical path from the EVD folder root)
 
 ## Review Gate
 

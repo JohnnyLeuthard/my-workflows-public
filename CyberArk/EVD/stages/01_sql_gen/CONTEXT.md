@@ -22,7 +22,7 @@
 
 ## Outputs
 
-- **SQL query** → `stages/01_sql_gen/output/query.sql` (absolute path from EVD folder root)
+- **SQL query** → `stages/01_sql_gen/output/query.sql` (canonical path from the EVD folder root)
 
 ## Review Gate
 

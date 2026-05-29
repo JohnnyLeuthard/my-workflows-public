@@ -108,14 +108,24 @@ These rules apply to **all work in this repository**, regardless of which tool y
 
 ## File Organization
 
-### Output and Naming
+### EVD Output Artifact Naming
 
-Each pipeline stage has an `output/` folder where results live. Use these locations:
+Each EVD pipeline stage has an `output/` folder where results live. Use the exact canonical locations below for normal pipeline runs:
 
-- `CyberArk/EVD/stages/01_sql_gen/output/query.sql` — Generated SQL query
-- `CyberArk/EVD/stages/02_data_fetch/output/vault_data.csv` — Query results as CSV
-- `CyberArk/EVD/stages/03_parsing/output/compliance_report.md` — Compliance findings
-- `CyberArk/EVD/stages/04_remediation/output/remediation_plan.md` — Remediation steps
+| Stage | Artifact | Canonical path | Format |
+|-------|----------|----------------|--------|
+| 01_sql_gen | Generated SQL query | `CyberArk/EVD/stages/01_sql_gen/output/query.sql` | SQL |
+| 02_data_fetch | Query results | `CyberArk/EVD/stages/02_data_fetch/output/vault_data.csv` | CSV |
+| 03_parsing | Compliance findings | `CyberArk/EVD/stages/03_parsing/output/compliance_report.md` | Markdown |
+| 04_remediation | Remediation steps | `CyberArk/EVD/stages/04_remediation/output/remediation_plan.md` | Markdown |
+
+Do not invent alternate output names, add timestamps, or write duplicate copies unless the human explicitly asks for an archive or comparison file.
+
+When prior EVD outputs should be retained, archive them under the owning stage's `output/archive/` folder using the rules in `CyberArk/EVD/references/output_artifact_standards.md`. The canonical output file remains the active handoff file for review and next-stage input.
+
+### Vault Data Naming Standards
+
+`CyberArk/EVD/references/naming_standards.md` defines naming rules for CyberArk information inside the vault: safe names, platform IDs, account object names, and compliance rule IDs. It is not a repository file naming standard.
 
 ### Scripts and Execution
 

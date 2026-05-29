@@ -4,7 +4,7 @@
 
 ## Inputs
 
-- **Layer 4 (Working)**: `stages/03_parsing/output/compliance_report.md` — Compliance findings from Stage 3 (absolute path from EVD folder root). Primary input.
+- **Layer 4 (Working)**: `stages/03_parsing/output/compliance_report.md` — Compliance findings from Stage 3 (canonical path from the EVD folder root). Primary input.
 - **Layer 3 (Reference)**: `references/naming_standards.md` — Defines what "correct" looks like for each rule. Determines the target state for every action item (located in EVD folder).
 - **Layer 3 (Reference, on-demand)**: `references/query_templates/_INDEX.md` — Optionally consulted to suggest follow-up EVD queries that verify remediation was applied correctly.
 
@@ -20,7 +20,7 @@
 
 ## Outputs
 
-- **Remediation plan** → `stages/04_remediation/output/remediation_plan.md` (absolute path from EVD folder root)
+- **Remediation plan** → `stages/04_remediation/output/remediation_plan.md` (canonical path from the EVD folder root)
 
 ### Output File Structure
 

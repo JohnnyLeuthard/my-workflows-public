@@ -1,7 +1,10 @@
-# Vault Naming Standards
+# CyberArk Vault Data Naming Standards
 
 > Layer 3 shared reference. Consumed by EVD/01_sql_gen, EVD/03_parsing, and psPAS/01_planning.
 > Configure once during workspace setup. Stays the same across every pipeline run.
+> This file defines naming standards for CyberArk information inside the vault: safes, platform IDs, account objects, and compliance rule IDs. It does not define repository file names or EVD output artifact names.
+> For EVD pipeline output file names and locations, use `output_artifact_standards.md`.
+> Expect to tune this file for your vault. The placeholder patterns are examples only; Stage 3 compliance results depend on replacing them with your real naming model and refining them as you review findings.
 
 ---
 

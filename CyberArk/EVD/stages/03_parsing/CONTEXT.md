@@ -4,7 +4,7 @@
 
 ## Inputs
 
-- **Layer 4 (Working)**: `stages/02_data_fetch/output/vault_data.csv` — Raw data exported in Stage 2 (absolute path from EVD folder root).
+- **Layer 4 (Working)**: `stages/02_data_fetch/output/vault_data.csv` — Raw data exported in Stage 2 (canonical path from the EVD folder root).
 - **Layer 3 (Reference)**: `references/naming_standards.md` — Organization naming conventions to check against (located in EVD folder).
 
 ## Process
@@ -17,7 +17,7 @@
 
 ## Outputs
 
-- **Compliance report** → `stages/03_parsing/output/compliance_report.md` (absolute path from EVD folder root)
+- **Compliance report** → `stages/03_parsing/output/compliance_report.md` (canonical path from the EVD folder root)
 
 ## Review Gate
 

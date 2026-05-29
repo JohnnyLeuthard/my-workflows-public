@@ -10,15 +10,9 @@ function Invoke-EVDQuery
 
     The workflow provides all file paths — the user just runs the command as given.
 
-    Required AD group membership:
-
-    Prod:
-        <ORG>_Prod_EPVEVD_CyberArk_USR_RO
-        <ORG>_Prod_EPVEVD_Reporting_USR_RO
-
-    UAT / Dev:
-        <ORG>_UAT_EPVEVD_CyberArk_USR_RO
-        <ORG>_UAT_EPVEVD_Reporting_USR_RO
+    Access requirement:
+        You need, at minimum, read access to the target CyberArk EVD database.
+        Follow your organization's normal process for requesting that access.
 
 .PARAMETER SQLQuery
     Inline SQL query string.

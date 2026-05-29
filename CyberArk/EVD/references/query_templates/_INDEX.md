@@ -30,7 +30,7 @@
 1. Match the user's request to a template category above
 2. Load only that template file
 3. Review the SQL and customize parameters as needed for the user's specific request
-4. The template SQL is complete and ready to run — system safe exclusions are already embedded
+4. The template SQL is structurally complete, but must be reviewed and customized before use — system safe exclusions are already embedded
 5. Write the final SQL to `stages/01_sql_gen/output/query.sql` and proceed through the normal review gate
 
 ## Notes
@@ -38,3 +38,4 @@
 - Templates follow the same EAV pivot pattern documented in `../eva_query_patterns.md`
 - System safe exclusions are embedded in each template — keep in sync with `../system_safe_exclusions.md`
 - Templates are starting points — the AI should adjust columns, filters, and thresholds based on the user's actual request
+- Before relying on templates in a new environment, review them after `../../EVD.psd1`, `../naming_standards.md`, and `../system_safe_exclusions.md` are configured. Update environment-specific assumptions, platform mappings, naming-standard dependencies, and safe filters as needed.

@@ -23,12 +23,6 @@ LEFT JOIN dbo.CAObjectProperties op
 WHERE f.CAFType = 2
     AND f.CAFDeletionDate IS NULL
     AND f.CAFSafeName LIKE 'SA-%'
-    AND (
-        MAX(CASE WHEN op.CAOPObjectPropertyName = 'PolicyID'
-                 THEN op.CAOPObjectPropertyValue END) IS NULL
-        OR MAX(CASE WHEN op.CAOPObjectPropertyName = 'PolicyID'
-                    THEN op.CAOPObjectPropertyValue END) <> 'SNOW2'
-    )
     -- System safe exclusions from references/system_safe_exclusions.md -- keep in sync
     -- Vault Infrastructure
     AND f.CAFSafeName NOT IN (
@@ -64,6 +58,11 @@ WHERE f.CAFType = 2
 GROUP BY
     f.CAFSafeName, f.CAFFileName,
     f.CAFCreationDate, f.CAFLastUsedHumanDate
+HAVING
+    MAX(CASE WHEN op.CAOPObjectPropertyName = 'PolicyID'
+             THEN op.CAOPObjectPropertyValue END) IS NULL
+    OR MAX(CASE WHEN op.CAOPObjectPropertyName = 'PolicyID'
+                THEN op.CAOPObjectPropertyValue END) <> 'SNOW2'
 ORDER BY
     f.CAFSafeName ASC,
     f.CAFFileName ASC;

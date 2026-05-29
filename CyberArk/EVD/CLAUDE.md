@@ -55,7 +55,9 @@ When the user activates or asks you to work on a specific stage, **load only tha
 - **One stage at a time**: Load and work with only the current stage's instructions. Do not jump ahead or load the next stage's context until the current review gate has passed.
 - **No fabricated data**: Never generate sample query results, mock CSVs, or hypothetical compliance findings. All data comes from actual script execution and file contents.
 - **Schema authority**: The environment schema in `references/` is authoritative for column types and lengths. Vendor schema in `references/vendor_schema/` is supplementary — use it for understanding column semantics only.
-- **Output location clarity**: All output files use absolute paths from the EVD folder root (e.g., `stages/01_sql_gen/output/query.sql`). Do not use relative paths that could be ambiguous.
+- **Output artifact standards**: Follow `references/output_artifact_standards.md` for canonical output file names, formats, locations, and archive naming. Canonical files are the active stage handoff files; archived files are retained history and must not be used as next-stage input unless the human explicitly selects one.
+- **Output location clarity**: All output files use paths from the EVD folder root (e.g., `stages/01_sql_gen/output/query.sql`). Do not use relative paths that could be ambiguous.
+- **Vault naming standards boundary**: `references/naming_standards.md` governs CyberArk vault data naming rules only: safe names, platform IDs, account object names, and compliance rule IDs. It is not a file naming standard.
 
 ---
 
