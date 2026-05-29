@@ -8,6 +8,7 @@ Read the user's request and route to the correct sub-workspace.
 |-------------------------------------------------------------------------|----------------------------|
 | CyberArk vault operations — EVD queries, psPAS remediation, REST API    | [CyberArk/CONTEXT.md](CyberArk/CONTEXT.md)   |
 | Reusable brand, writing, color, icon, or logo guidance                  | [corp-brand/CONTEXT.md](corp-brand/CONTEXT.md) |
+| Docker setup, n8n guides, Tailscale, GitHub tokens, infrastructure how-tos | [tech-guides/CONTEXT.md](tech-guides/CONTEXT.md) |
 
 *More sub-workspaces will be added over time. See "Adding a sub-workspace" below.*
 
