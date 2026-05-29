@@ -9,6 +9,7 @@ This repo is itself an MWP (Model Workspace Protocol) workspace. Entry points ar
 | Folder | What it is |
 |--------|------------|
 | [CyberArk/](CyberArk/) | My own active workspace — CyberArk vault automation using the Model Workspace Protocol (MWP). |
+| [corp-brand/](corp-brand/) | Reusable public-safe brand kit for writing, color, icon, and logo guidance used by other workflows. |
 | [clief-notes/](clief-notes/) | **Reference only.** Example workspaces and tutorials from the Clief-Notes Skool community (`The Foundation/`, `Folder Structure/`). See [clief-notes/README.md](clief-notes/README.md). |
 
 ## Credit
