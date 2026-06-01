@@ -36,7 +36,7 @@ A few sparks to get you thinking:
 
 If this is your first comp, welcome. Here's what you need to know:
 
-This week (and every week) you're learning interpretable context methodology. Folders as architecture. Each file does one job well.
+This week (and every week) you're learning **`interpretable context methodology`**. Folders as architecture. Each file does one job well.
 
 Your researcher is a folder with five things:
 
