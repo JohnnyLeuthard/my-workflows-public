@@ -1,0 +1,19 @@
+{
+  "candidateId": "Johnson-Alex-2026-06-05",
+  "candidateName": "Alex Johnson",
+  "phone": "(555) 912-7734",
+  "email": "alex.johnson@email.example.com",
+  "location": "Chicago, IL",
+  "citizenship": "US Citizen",
+  "dateAdded": "2026-06-05",
+  "appliedJobKey": "2026-06-SeniorDevOpsEngineer-FTE",
+  "screeningStatus": "rejected",
+  "analysisCompleted": true,
+  "interviewScheduled": false,
+  "interviewDate": null,
+  "overallScore": 1,
+  "recommendation": "Unqualified",
+  "offerExtended": false,
+  "offerAccepted": null,
+  "startDate": null
+}

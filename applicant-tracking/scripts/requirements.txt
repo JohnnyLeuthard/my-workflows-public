@@ -1,0 +1,8 @@
+# Applicant Tracking — Python Script Dependencies
+# Install: pip install -r requirements.txt
+# Python 3.9+ required
+
+pdfplumber>=0.11.0       # PDF text extraction
+requests>=2.31.0         # URL fetching for job descriptions
+beautifulsoup4>=4.12.0   # HTML parsing
+python-frontmatter>=1.1.0  # YAML frontmatter parsing (optional — future use)

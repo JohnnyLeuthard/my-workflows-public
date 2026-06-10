@@ -1,0 +1,19 @@
+{
+  "candidateId": "Smith-Jane-2026-06-01",
+  "candidateName": "Jane Smith",
+  "phone": "(555) 201-4893",
+  "email": "jane.smith@email.example.com",
+  "location": "Austin, TX",
+  "citizenship": "US Citizen",
+  "dateAdded": "2026-06-01",
+  "appliedJobKey": "2026-06-SeniorDevOpsEngineer-FTE",
+  "screeningStatus": "accepted",
+  "analysisCompleted": true,
+  "interviewScheduled": true,
+  "interviewDate": "2026-06-12",
+  "overallScore": 4,
+  "recommendation": "Strong Fit",
+  "offerExtended": true,
+  "offerAccepted": true,
+  "startDate": "2026-07-14"
+}

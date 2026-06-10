@@ -1,0 +1,36 @@
+{
+  "jobKey": "2026-06-QAEngineer-Contractor",
+  "jobTitle": "QA Engineer",
+  "type": "Contractor",
+  "dateOpened": "2026-06-05",
+  "department": "Quality Assurance",
+  "hiringManager": "Jordan Ellis",
+  "contractFirms": [
+    {
+      "name": "TechStaff Solutions",
+      "rep": "Riley Nguyen",
+      "email": "rnguyen@techstaffsolutions.example.com",
+      "phone": "(555) 867-5309"
+    }
+  ],
+  "requiredSkills": [
+    "Selenium WebDriver (Python or Java)",
+    "API testing (Postman or REST Assured)",
+    "JIRA",
+    "Agile / Scrum",
+    "Git"
+  ],
+  "niceToHaveSkills": [
+    "JMeter or k6 (performance testing)",
+    "Appium (mobile testing)",
+    "Cucumber / Behave (BDD)",
+    "GitHub Actions CI/CD integration"
+  ],
+  "yearsRequired": 3,
+  "educationRequired": "BS Information Systems, Computer Science, or equivalent",
+  "certificationsRequired": [],
+  "complianceRequired": false,
+  "contractDuration": "12 months",
+  "rate": "TBD",
+  "status": "open"
+}

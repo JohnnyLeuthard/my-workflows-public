@@ -1,0 +1,19 @@
+{
+  "candidateId": "Brown-Michael-2026-06-03",
+  "candidateName": "Michael Brown",
+  "phone": "(555) 374-2081",
+  "email": "mbrown@email.example.com",
+  "location": "Denver, CO",
+  "citizenship": "US Citizen",
+  "dateAdded": "2026-06-03",
+  "appliedJobKey": "2026-06-SeniorDevOpsEngineer-FTE",
+  "screeningStatus": "rejected",
+  "analysisCompleted": true,
+  "interviewScheduled": true,
+  "interviewDate": "2026-06-10",
+  "overallScore": 3,
+  "recommendation": "Partial Fit",
+  "offerExtended": false,
+  "offerAccepted": null,
+  "startDate": null
+}

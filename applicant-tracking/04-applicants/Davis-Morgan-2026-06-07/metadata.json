@@ -1,0 +1,19 @@
+{
+  "candidateId": "Davis-Morgan-2026-06-07",
+  "candidateName": "Morgan Davis",
+  "phone": "(555) 463-9120",
+  "email": "morgan.davis@email.example.com",
+  "location": "Remote (Portland, OR)",
+  "citizenship": "US Citizen",
+  "dateAdded": "2026-06-07",
+  "appliedJobKey": "2026-06-QAEngineer-Contractor",
+  "screeningStatus": "interview",
+  "analysisCompleted": true,
+  "interviewScheduled": true,
+  "interviewDate": "2026-06-18",
+  "overallScore": 4,
+  "recommendation": "Strong Fit",
+  "offerExtended": false,
+  "offerAccepted": null,
+  "startDate": null
+}

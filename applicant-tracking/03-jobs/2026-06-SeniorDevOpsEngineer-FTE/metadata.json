@@ -1,0 +1,32 @@
+{
+  "jobKey": "2026-06-SeniorDevOpsEngineer-FTE",
+  "jobTitle": "Senior DevOps Engineer",
+  "type": "FTE",
+  "dateOpened": "2026-06-01",
+  "dateFilled": "2026-07-14",
+  "department": "Platform Engineering",
+  "hiringManager": "Jordan Ellis",
+  "requiredSkills": [
+    "Kubernetes",
+    "Docker",
+    "Terraform",
+    "CI/CD (GitHub Actions or Jenkins)",
+    "Linux administration",
+    "Python or Bash scripting",
+    "Cloud platform (AWS/Azure/GCP)"
+  ],
+  "niceToHaveSkills": [
+    "CKA or CKAD certification",
+    "Helm",
+    "Ansible",
+    "Service mesh (Istio/Linkerd)",
+    "AWS Solutions Architect certification"
+  ],
+  "yearsRequired": 5,
+  "educationRequired": "BS Computer Science, Engineering, or equivalent",
+  "certificationsRequired": [],
+  "complianceRequired": false,
+  "predefinedQuestions": true,
+  "questionsFile": "screening-questions.md",
+  "status": "filled"
+}
