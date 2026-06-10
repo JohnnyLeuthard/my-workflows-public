@@ -1,0 +1,42 @@
+{
+  "jobKey": "2026-06-LeadInformationSecurityEngineer-FTE",
+  "jobTitle": "Lead Information Security Engineer",
+  "type": "FTE",
+  "dateOpened": "2026-06-09",
+  "postingCloses": "2026-06-11",
+  "company": "Wells Fargo",
+  "reqId": "R-533376",
+  "department": "Technology — Information Security",
+  "locations": ["Hyderabad, India"],
+  "locationNote": "India-only posting — may not be suitable for US-based candidates",
+  "workModel": "Not stated",
+  "payRange": "Not stated",
+  "hiringManager": null,
+  "requiredSkills": [
+    "Information Security Engineering (5+ years)",
+    "CyberArk Vault, PVWA, CPM, PSM, CP/CCP — production operations",
+    "L3/L4 incident response and escalation authority",
+    "Windows and Linux OS-level troubleshooting",
+    "Active Directory, SQL, Unix, database systems",
+    "ITIL Incident, Problem, and Change Management",
+    "ServiceNow or Remedy"
+  ],
+  "niceToHaveSkills": [
+    "CyberArk SIEM/SNMP/Syslog integration",
+    "Splunk for PAM monitoring",
+    "PowerShell, PACLI, REST APIs",
+    "Cloud PAM support (Azure/AWS/GCP)",
+    "Safe management and LDAP integration",
+    "Break-glass access operations",
+    "BCP/DR planning and testing",
+    "Automation and scripting for operational efficiency"
+  ],
+  "yearsRequired": 5,
+  "educationRequired": "Not specified",
+  "certificationsRequired": [],
+  "visaSponsorship": "Not stated",
+  "complianceRequired": true,
+  "onCall": "16x7 rotation",
+  "sourceUrl": "https://www.wellsfargojobs.com/en/jobs/r-533376/lead-information-security-engineer/",
+  "status": "open"
+}

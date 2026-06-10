@@ -1,0 +1,39 @@
+{
+  "jobKey": "2026-06-InformationSecurityEngineeringManager-FTE",
+  "jobTitle": "Information Security Engineering Manager",
+  "type": "FTE",
+  "dateOpened": "2026-06-09",
+  "postingCloses": "2026-06-19",
+  "company": "Wells Fargo",
+  "reqId": "R-524895",
+  "department": "Technology — Information Security",
+  "locations": ["Charlotte, NC", "Columbus, OH", "Irving, TX"],
+  "workModel": "Hybrid",
+  "payRange": "$119,000 – $187,000",
+  "hiringManager": null,
+  "requiredSkills": [
+    "Information Security Engineering (5+ years)",
+    "Leadership / people management (2+ years)",
+    "Privileged Access Management (PAM)"
+  ],
+  "niceToHaveSkills": [
+    "CyberArk credential management",
+    "SPIFFE / SPIRE (Agentic AI identity frameworks)",
+    "DevSecOps — CI/CD secrets injection, credential delivery",
+    "Kubernetes and cloud-native privileged access",
+    "Cloud IAM and hybrid architecture PAM",
+    "Zero Trust access modernization",
+    "Policy-as-code / automation for PAM",
+    "Agile team management",
+    "Secrets management platforms",
+    "Credential rotation and ephemeral credentials"
+  ],
+  "yearsRequired": 5,
+  "leadershipYearsRequired": 2,
+  "educationRequired": "Not specified",
+  "certificationsRequired": [],
+  "visaSponsorship": false,
+  "complianceRequired": true,
+  "sourceUrl": "https://www.wellsfargojobs.com/en/jobs/r-524895/information-security-engineering-manager/",
+  "status": "open"
+}
