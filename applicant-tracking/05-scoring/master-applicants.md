@@ -14,6 +14,8 @@
 | Brown-Michael-2026-06-03 | 2026-06-SeniorDevOpsEngineer-FTE | Senior DevOps Engineer | FTE | 2026-06-03 | 3 | Partial Fit | No | — | — | rejected | Rejected post-interview; Kubernetes gap |
 | Johnson-Alex-2026-06-05 | 2026-06-SeniorDevOpsEngineer-FTE | Senior DevOps Engineer | FTE | 2026-06-05 | 1 | Unqualified | No | — | — | rejected | Screened out at resume; no DevOps exp |
 | Davis-Morgan-2026-06-07 | 2026-06-QAEngineer-Contractor | QA Engineer | Contractor | 2026-06-07 | 4 | Strong Fit | No | — | — | interview | Interview round 1 scheduled 2026-06-18 |
+| Leuthard-Johnny-2026-06-09 | 2026-06-InformationSecurityEngineeringManager-FTE | Information Security Engineering Manager | FTE | 2026-06-09 | 3 | Partial Fit | No | — | — | screening | IC/lead background; gaps in cloud-native PAM and people mgmt |
+| Leuthard-Johnny-2026-06-09 | 2026-06-LeadInformationSecurityEngineer-FTE | Lead Information Security Engineer | FTE | 2026-06-09 | 5 | Excellent Fit | No | — | — | screening | ⚠️ Hyderabad India only — confirm location eligibility |
 
 ---
 
