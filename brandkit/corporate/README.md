@@ -13,11 +13,9 @@ It is intentionally generic. Replace the placeholder guidance with your own bran
 5. Use [05-icons.md](05-icons.md) for icon selection and usage.
 6. Use [06-logo.md](06-logo.md) once a logo or wordmark exists.
 
-## Naming Note
+## Location Note
 
-The folder is currently named `corp-brand` because it can serve as a corporate or organizational brand reference. If you want a friendlier reusable name later, `brand-kit` or `brand-system` would be clearer for public GitHub users.
-
-For now, keep this folder name if other workflows already point to it.
+This folder lives at `brandkit/corporate/` within the Brand Kit workspace. Other sub-brands (personal, product, etc.) live as siblings under `brandkit/`. To start a new brand, copy the `_template/` folder and follow `SETUP.md`.
 
 ## Editing Rules
 

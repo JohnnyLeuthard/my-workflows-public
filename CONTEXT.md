@@ -7,7 +7,7 @@ Read the user's request and route to the correct sub-workspace.
 | If the request involves...                                              | Route to...                |
 |-------------------------------------------------------------------------|----------------------------|
 | CyberArk vault operations — EVD queries, psPAS remediation, REST API    | [CyberArk/CONTEXT.md](CyberArk/CONTEXT.md)   |
-| Reusable brand, writing, color, icon, or logo guidance                  | [corp-brand/CONTEXT.md](corp-brand/CONTEXT.md) |
+| Brand identity, voice, colors, logo, icons — corporate, personal, or new | [brandkit/CONTEXT.md](brandkit/CONTEXT.md) |
 | Docker setup, n8n guides, Tailscale, GitHub tokens, infrastructure how-tos | [tech-guides/CONTEXT.md](tech-guides/CONTEXT.md) |
 | Applicant tracking, hiring workflow, job descriptions, resume screening, candidate scoring, interviews, offers | [applicant-tracking/CONTEXT.md](applicant-tracking/CONTEXT.md) |
 

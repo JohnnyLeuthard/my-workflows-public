@@ -1,6 +1,6 @@
-# Brand Kit Workspace
+# Corporate Brand Workspace
 
-You are in the `corp-brand/` workspace. This workspace provides reusable brand, writing, color, icon, and logo guidance for other workflows in this repository.
+You are in the `brandkit/corporate/` workspace. This workspace provides reusable corporate brand, writing, color, icon, and logo guidance for other workflows in this repository.
 
 ## Purpose
 
