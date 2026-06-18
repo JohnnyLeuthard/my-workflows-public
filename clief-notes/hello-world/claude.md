@@ -1,0 +1,1 @@
+Read the AGENTS.md file in this same folder and follow instructions

@@ -1,0 +1,1 @@
+go to the `01-control` sub-folder and read the `AGENTS.md` and follow instructions
