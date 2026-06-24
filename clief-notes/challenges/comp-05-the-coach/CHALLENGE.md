@@ -1,3 +1,12 @@
+
+ WEEKLY COMP #5: THE COACH 🏆
+
+💰 $500 CASH 💰
+
+Win this and you've covered a year of Premium with $175 left over.
+
+---
+
 📋 THE CHALLENGE
 
 Build a folder-based AI coach for a specific domain. You pick the domain.
@@ -97,3 +106,9 @@ Four weeks. Four different specialists. Four different portfolio pieces.
 By the end of June, anyone who enters all four walks out with a portfolio of variety. That's not a Skool flex. That's a real body of work.
 
 LFG 🚀
+
+---
+Winner:  
+https://www.skool.com/cliefnotes/week-5-comp-winner
+
+

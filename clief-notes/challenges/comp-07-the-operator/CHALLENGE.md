@@ -117,3 +117,7 @@ By the end of next week, anyone who's entered the full Month 2 arc walks out wit
 
 This week the stakes are bigger. The winner gets a free seat in The Lyceum, where Jake walks you through the deep work this comp can't teach in six days.
 
+---
+
+Winner:
+https://www.skool.com/cliefnotes/the-operator-results

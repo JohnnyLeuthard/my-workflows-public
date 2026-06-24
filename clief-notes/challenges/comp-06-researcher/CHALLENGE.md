@@ -104,3 +104,7 @@ Premium and VIP members only. No exceptions.
 🎉 Winner announced: Monday, June 1st
 
 
+---
+
+Winner:  
+https://www.skool.com/cliefnotes/week-5-comp-winner

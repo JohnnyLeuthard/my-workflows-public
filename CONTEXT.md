@@ -10,6 +10,7 @@ Read the user's request and route to the correct sub-workspace.
 | Brand identity, voice, colors, logo, icons — corporate, personal, or new | [brandkit/CONTEXT.md](brandkit/CONTEXT.md) |
 | Docker setup, n8n guides, Tailscale, GitHub tokens, infrastructure how-tos | [tech-guides/CONTEXT.md](tech-guides/CONTEXT.md) |
 | Applicant tracking, hiring workflow, job descriptions, resume screening, candidate scoring, interviews, offers | [applicant-tracking/CONTEXT.md](applicant-tracking/CONTEXT.md) |
+| iScaleLabs projects, agent-control experiments, workflow prototypes, tutorial follow-alongs | [iScaleLabs/CONTEXT.md](iScaleLabs/CONTEXT.md) |
 
 *More sub-workspaces will be added over time. See "Adding a sub-workspace" below.*
 
