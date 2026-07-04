@@ -4,7 +4,7 @@ Append-only. Each entry: what was decided, why, and what was rejected. The spec
 (`SPEC.md`) records outcomes; this file records reasoning. Never rewrite old
 entries — supersede them with new ones.
 
-All entries below: **2026-07-03**, design phase.
+Entries D1–D24: **2026-07-03**, design phase. Later entries carry their own date inline.
 
 ---
 
@@ -226,3 +226,21 @@ no unattended end-to-end run is possible.
 folder is — exactly what a drop-in can't assume); build-only seed without parent integration
 (manual router wiring defeats "drop it in and ask"); auto-running a sample debate as
 verification (would stall at the human checkpoint).
+
+## D25. The lab ships a `HOW-TO-USE.md` user guide at its root
+
+*(2026-07-04.)*
+
+**Why**: Every file in the lab so far instructs the *agent*; nothing explains the lab to a
+*person*. The human sits at the center of the loop (checkpoint, comments, verdicts), so the lab
+must carry its own plain-language manual: what the lab is, a pointed first run on the shipped
+samples, a numbered step-by-step for a real debate (brief → checkpoint → verdict → report), and
+quick recipes for the common follow-ups. Spec requirement 12 pins the four sections and their
+order. The guide is documentation only — agents still enter through the `CLAUDE.md` →
+`AGENTS.md` → `CONTEXT.md` chain, never through the guide — and any design change that alters
+the human's interaction must update the guide in the same change, since a stale manual actively
+misleads.
+**Rejected**: A `docs/` subfolder (one file doesn't need a folder, and root placement is what
+makes it findable to a first-time reader); folding usage into the lab's `AGENTS.md` (mixes
+audiences — agent instructions and human explanation rot each other); relying on the checkpoint
+prompts to teach usage interactively (teaches mid-run, too late for "what is this folder?").

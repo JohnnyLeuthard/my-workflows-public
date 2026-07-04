@@ -18,9 +18,9 @@ The full protocol lives in `SPEC.md` (Build & Integration Protocol). In short:
 1. **Locate**: if this folder's parent is the lab folder (even empty), build into the parent. If
    this folder was dropped straight into a workspace root, create `debate-lab/` beside it, move
    `_design/` inside, and build there.
-2. **Build**: create the full structure per the spec — front-door chain, moderator, synthesis,
-   reference files, `personas/_template/`, the five starter personas, the two shipped sample
-   inputs. Preserve existing human material (added personas, input jobs, `output/` records);
+2. **Build**: create the full structure per the spec — front-door chain, the `HOW-TO-USE.md`
+   user guide, moderator, synthesis, reference files, `personas/_template/`, the five starter
+   personas, the two shipped sample inputs. Preserve existing human material (added personas, input jobs, `output/` records);
    confirm before overwriting a customized machine file.
 3. **Plug in**: update the parent workspace — add a router row to its `CONTEXT.md`, or a pointer
    in its `AGENTS.md`/`CLAUDE.md` if it has no router, per that workspace's own conventions. If

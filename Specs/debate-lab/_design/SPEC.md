@@ -289,6 +289,43 @@ transient hiccups; never a silent loop, never a synthesis over a hole.
   debate-lab — the same isolation rule as the branding decision. Plain markdown
   on disk means any future tool can read the archive without the lab changing.
 
+### 12. `HOW-TO-USE.md` — the human's manual *(decided 2026-07-04)*
+
+The lab ships with a **`HOW-TO-USE.md` at the lab root**, written for the human
+user — plain language, no ICM jargon assumed, no agent instructions in it. Agents
+never route through it (the `CLAUDE.md` → `AGENTS.md` → `CONTEXT.md` chain stays
+the only machine entry point); this file exists so a person opening the folder for
+the first time can understand the lab and run it without asking.
+
+The guide must contain, in this order:
+
+1. **What this is** — two or three paragraphs explaining the lab to someone who
+   has never seen it: an issue goes in, several personas independently argue it
+   from their own perspectives, a master compares their positions and drafts an
+   assessment, and the human decides at a checkpoint whether to accept, order a
+   rebuttal round, or start over. Name the key ideas (personas, expertise
+   guardrails, weights, the checkpoint) in everyday words.
+2. **Your first debate** — point at the two shipped samples and give the exact
+   thing to say (e.g. "debate `input/sample-ccp-failure/`"), so the first run
+   tests the machine, not the reader's brief-writing.
+3. **Running your own debate, step by step** — numbered walkthrough of the full
+   flow from the human's seat: create `input/<job>/` with a `brief.md` (what goes
+   in it, how to name or omit personas); say "debate this"; what happens during
+   fan-out and synthesis and roughly how long the human waits; what the
+   checkpoint looks like and exactly how to respond — `> COMMENT:` lines under
+   specific points, overall steer in `## Human Direction`, then one of the three
+   verdicts (accept / rebuttal with panel adjustments / full reprocess); where
+   the final `report.md` lands and what the round files and `STATUS.md` are.
+4. **Quick recipes** — short entries for the common follow-ups: add a persona
+   (pointing at `personas/_template/HOW-TO-CREATE.md`), disable or re-weight a
+   persona (`CONFIG.md`), pick a panel for one debate, resume an interrupted
+   debate (just ask — state lives in `STATUS.md`), and request a derived report
+   from a closed job (into `output/<job>/reports/`).
+
+**Kept current**: any design change that alters how the human interacts with the
+lab — checkpoint convention, verdicts, folder layout, brief format — must update
+`HOW-TO-USE.md` in the same change. A stale manual is worse than none.
+
 ## Persona Template Scaffold *(decided 2026-07-03)*
 
 Three structural decisions shape the scaffold:
@@ -444,6 +481,7 @@ debate-lab/
 ├── CLAUDE.md                     ← pointer to AGENTS.md
 ├── AGENTS.md                     ← workspace identity (Layer 0)
 ├── CONTEXT.md                    ← router (Layer 1): debate runs → moderator/; new personas → _template/
+├── HOW-TO-USE.md                 ← the human's manual: what the lab is + step-by-step usage (people read it; agents never route through it)
 │
 ├── personas/                     ← Layer 2, fan-out
 │   ├── _template/                ← ready-to-copy persona skeleton (never debates)
@@ -540,7 +578,8 @@ Follow this when asked to build (or rebuild) the lab from `_design/`.
 ### What to build
 
 Everything in the Proposed Folder Structure section: the front-door chain (`CLAUDE.md` →
-`AGENTS.md` → `CONTEXT.md` router), `moderator/AGENTS.md`, `synthesis/AGENTS.md`, the four
+`AGENTS.md` → `CONTEXT.md` router), the `HOW-TO-USE.md` user guide (per requirement 12 — plain
+language, the four sections in order), `moderator/AGENTS.md`, `synthesis/AGENTS.md`, the four
 `reference/` files, `personas/_template/` (per the Persona Template Scaffold section, including
 `HOW-TO-CREATE.md`), the five starter personas (`windows-admin`, `linux-admin`, `cyberark-l3`,
 `network-engineer`, `stoic` — each with the four files, registered in `reference/roster.md`,
@@ -583,6 +622,9 @@ checkpoint (requirement 7):
 - Every `CONFIG.md` parses per the pinned format (requirement in the scaffold section).
 - `reference/roster.md` rows match the persona folders one-to-one (excluding `_template/`).
 - Both sample input folders contain a `brief.md`.
+- `HOW-TO-USE.md` exists at the lab root, has the four required sections in order (what this is;
+  first debate; step-by-step; quick recipes), and its instructions match the built lab (folder
+  names, checkpoint convention, the three verdicts).
 - The parent router row (if any) resolves.
 
 Then tell the human the lab is ready and offer to run a first debate on a shipped sample.
