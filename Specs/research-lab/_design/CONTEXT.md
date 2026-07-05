@@ -10,6 +10,7 @@ Route requests about this folder using the table below.
 | Why the lab is designed a certain way, evaluating a design change   | [DECISIONS.md](DECISIONS.md), with [SPEC.md](SPEC.md) for the current outcome |
 | Changing the design                                                 | Update [SPEC.md](SPEC.md) **and** append an entry to [DECISIONS.md](DECISIONS.md) — never rewrite old entries |
 | Running research, fact-checking, adding a specialist — actual lab work | The built lab's own chain: `../CLAUDE.md`. If the lab is not built yet, offer to build it from [SPEC.md](SPEC.md) first |
+| Proposed reliability hardening and open review items, or what happened to one | [NEXT-STEPS.md](NEXT-STEPS.md) — intent only; designing an item means updating SPEC.md + DECISIONS.md |
 
 ## Build Quick-Reference
 

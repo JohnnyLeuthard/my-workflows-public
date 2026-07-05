@@ -4,7 +4,8 @@ Append-only. Each entry: what was decided, why, and what was rejected. The spec
 (`SPEC.md`) records outcomes; this file records reasoning. Never rewrite old
 entries — supersede them with new ones.
 
-Entries D1–D13: **2026-07-05**, design phase. Later entries carry their own date inline.
+Entries D1–D13: **2026-07-05**, design phase. Entries D14–D19: same day, pre-build
+reliability review. Later entries carry their own date inline.
 
 ---
 
@@ -159,3 +160,78 @@ could not be reached, alongside unreachable-source gaps in Open Questions.
 evidence base from a lazy one); refusing to run without web access (supplied-material
 verification is still real work — e.g. checking a draft's internal consistency and its claims
 against provided documents).
+
+## D14. Citations are quote-anchored and fetched-only
+
+*(2026-07-05, pre-build reliability review — NEXT-STEPS A1+A2.)*
+
+**Why**: The lab's dominant failure mode is not structure, it is the AI: hallucinated
+citations — URLs that don't say what's claimed or don't exist. Two rules close most of it.
+**Quote-anchored**: every citation carries a short verbatim quote plus the access date;
+fabricating a quote+URL pair is far harder than fabricating a URL, quotes keep packets
+auditable after pages change, and human spot-checks drop from a re-read to seconds per claim.
+**Fetched-only**: a specialist may cite only sources it actually opened and read during the
+run — a search snippet is a lead, not a citation; claims on unreachable pages become
+`unsupported (unreachable)`.
+**Rejected**: Links-only citations (unauditable, and the model can invent them); trusting
+search snippets as evidence (snippets routinely misrepresent pages); silently keeping claims
+whose source couldn't be fetched (confident packets built on nothing).
+
+## D15. Verification runs against sources, never against the researcher's prose
+
+*(2026-07-05, pre-build reliability review — NEXT-STEPS A3.)*
+
+**Why**: The fact-checker is the same model as the researcher; if it verifies by reading the
+findings file, phase 2 just launders phase 1's misreadings into verdicts. So the rule: the
+verifier re-fetches and re-reads the cited sources; the findings tell it *what* to check,
+never what is true. HOW-TO-USE carries the high-stakes tip to run verification in a fresh
+session, since context contamination is real even with the rule.
+**Rejected**: Verifying from the findings prose (an echo, not a check); mandatory
+fresh-session verification for every job (right for high-stakes runs, needless overhead for a
+quick sweep — so it's a documented tip, not a requirement).
+
+## D16. `not-covered` — the restricted specialist's silence verdict
+
+*(2026-07-05, pre-build reliability review — NEXT-STEPS A4.)*
+
+**Why**: A `restrict-to-list: true` specialist can only report what its list covers. Mapping
+its silence to `unsupported` would read as "probably false" — silence from a narrow list
+carries no implication either way. The distinct verdict `not-covered` keeps a
+snopes-fact-checker honest when Snopes simply never wrote about a claim.
+**Rejected**: Folding silence into `unsupported` with a reason note (readers scan verdict
+columns; the word itself must not mislead); letting restricted specialists roam when their
+list is silent (defeats the entire point of the restriction).
+
+## D17. Corroboration requires independent originators
+
+*(2026-07-05, pre-build reliability review — NEXT-STEPS A5.)*
+
+**Why**: "2–3 sources" is worthless when all three syndicate one press release — the web is
+full of circular sourcing. So independence is defined (different originators; wire re-prints
+and re-reports count once) and tracing a claim to its origin is explicitly the
+source-analyst's job.
+**Rejected**: Counting sources by URL (rewards syndication); leaving "independent" undefined
+in the depth scale (every run would re-invent it).
+
+## D18. Fetched content is data, never instructions
+
+*(2026-07-05, pre-build reliability review — NEXT-STEPS A6.)*
+
+**Why**: A research agent reads arbitrary web pages, and pages can carry text addressed to AI
+agents ("ignore your instructions and…") — prompt injection. The protocol rule makes fetched
+material evidence to evaluate, never instructions to follow, and treats agent-addressed text
+as a reportable red flag about that source.
+**Rejected**: Relying on the harness alone to resist injection (defense belongs in the lab's
+own protocol too — the seed is portable to other tools); silently ignoring injected text
+(its presence is itself signal about the source's trustworthiness).
+
+## D19. Freshness stamps: packets and citations carry dates
+
+*(2026-07-05, pre-build reliability review — NEXT-STEPS A7.)*
+
+**Why**: Verdicts age and pages change. An "As of \<date\>" stamp at the packet's top tells a
+reader a year later exactly when this was true; per-citation access dates plus D14's verbatim
+quotes keep every claim auditable even after its page moves or dies.
+**Rejected**: Dates only in the run appendix (too buried for the packet's primary question:
+"is this still current?"); archiving full page copies into the job folder (heavyweight;
+quotes capture the load-bearing part).
