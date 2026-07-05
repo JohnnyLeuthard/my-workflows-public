@@ -244,3 +244,77 @@ misleads.
 makes it findable to a first-time reader); folding usage into the lab's `AGENTS.md` (mixes
 audiences — agent instructions and human explanation rot each other); relying on the checkpoint
 prompts to teach usage interactively (teaches mid-run, too late for "what is this folder?").
+
+## D26. Input is archived into the job folder at close
+
+*(2026-07-04, human-directed after the first completed debate.)*
+
+**Why**: Requirement 11 declares `output/<job>/` the complete, self-contained record — but the
+debated material itself lived permanently in `input/<job>/`, leaving the record split across two
+trees. The human's call: one place. So `input/<job>/` is a **staging area for live debates
+only**; when the job closes (accept verdict, `report.md` written), the moderator moves the whole
+input folder to `output/<job>/input/`. Anyone opening a closed job folder now has the question,
+every argument, the assessments, the report, and the raw input that was debated. Applied
+retroactively to `sample-ccp-failure` (already closed when decided).
+**Rejected**: Copying at job open (two live copies invite drift — personas might read one while
+the human edits the other); leaving input in place with a pointer (the record stays split, and
+pointers rot when folders are renamed); moving at job open (a reprocess or resumed round still
+reads input, and live-work files belong in the staging area until the job is done).
+
+## D27. Final reports carry a standalone "Recommended Resolution Steps" section
+
+*(2026-07-04, human feedback after reading the first delivered report.)*
+
+**Why**: The first report's resolution plan existed but lived as a numbered list inside the
+Verdict/Synthesis prose — and the human, the report's primary audience, couldn't find it. A
+report that travels to management must answer "what do we do?" at a glance. So the format now
+mandates a dedicated section between the synthesis and the agreement/conflict analysis:
+immediate/read-only steps, change-window repairs, explicit prohibitions, process fixes (or the
+recommended course and conditions, for policy debates). Mandatory even when empty ("no
+actionable steps" stated explicitly) so its absence is always a signal, never an oversight.
+**Rejected**: Leaving steps inside Verdict/Synthesis (proven failure — the human missed them on
+first read); putting actions at the very top (the verdict must lead — actions without the
+adjudicated "why" invite cargo-culting the fix).
+
+## D28. Committees: adjustable layer-2 shorthand, with a required `default` committee
+
+*(2026-07-05, human-directed. Designed only — pending build into the lab.)*
+
+**Why**: The human wants named groups of personas usable as the panel source ("debate this
+with the infra committee"), defined in one reference file (`reference/committees.md`) he can
+edit and consult. Making a committee an *expansion* into the existing layer-2 per-debate
+selection keeps one mental model: the kill switch still always wins, additions and omissions
+still apply on top ("infra committee plus stoic, minus linux-admin"), several committees union.
+A misconfigured committee (member folder missing, `_template` listed) is reported, never
+guessed — same rule as a malformed `CONFIG.md`. The **`default` committee** replaces the old
+"all personas on" rule for unnamed panels: it ships listing the five starters (identical
+effective panel to before), and editing that one row retunes the standing panel without
+touching any persona's kill switch. Fallback when `committees.md` is missing or the `default`
+row is malformed: all enabled personas, with the misconfiguration reported. Provenance follows:
+`STATUS.md`'s snapshot and the report's "How this debate ran" appendix name the committee that
+sourced the panel.
+**Rejected**: Committees as fixed locked panels (can't tweak per debate without editing the
+file — friction exactly where the brief already offers control); committees as a fourth
+selection layer (new precedence rules for no gain over expansion into layer 2); keeping "all
+personas on" as the unnamed-panel default (not user-tunable except by globally disabling
+personas, which conflates "not in my usual panel" with "broken/untested").
+
+## D29. Researcher and fact-checker will NOT join debate-lab — separate research workspace instead
+
+*(2026-07-05, human-directed. Supersedes the researcher/fact-checker item formerly in
+`NEXT-STEPS.md`.)*
+
+**Why**: The capability must serve every project — social-media, debate-lab, learning, whatever
+comes next — and the workspace isolation rule means anything living inside debate-lab is locked
+inside debate-lab. Structurally they never fit here anyway: personas hold positions, argue, and
+are weighed; a researcher and fact-checker are *evidence services* with no position, and a
+fact-checker reading other personas' outputs would break round-1 isolation. The human's fuller
+vision — multiple specialists, each with scope-of-work context files such as trusted-source
+URLs and sources to avoid — deserves its own lab with its own template pattern, to be specced
+as a separate `_design/` seed in a future session. Debate-lab needs no new machinery to benefit:
+research reports drop into `input/<job>/` like any supplied material (consumer-pull, same as
+the branding rule in requirement 11).
+**Rejected**: Support-role personas inside debate-lab (special-cases panel resolution and the
+protocol for members that never debate); a hybrid that can also seat them as evidence-focused
+debaters (inherits both problems); waiting to record the decision until the research workspace
+is designed (the intent would live nowhere).

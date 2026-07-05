@@ -4,6 +4,12 @@
 into this spec — sections marked *(decided 2026-07-03)* record the outcomes; `DECISIONS.md`
 alongside this file records the reasoning and rejected alternatives. Ready to build on the human's go.
 
+**Design addition 2026-07-05 (D28, pending build)**: committees — named persona groups in
+`reference/committees.md`, including a required `default` committee that sources the panel when a
+brief names none. Sections marked *(added 2026-07-05, D28 — pending build)* are newer than the
+built lab; building them in means creating `committees.md` and updating `moderator/AGENTS.md` and
+`HOW-TO-USE.md` to match.
+
 **This folder is also a drop-in build seed**: copy `_design/` into any workspace and ask the agent
 to build it out — the **Build & Integration Protocol** section at the end tells the builder where
 to build and how to plug the lab into the surrounding workspace.
@@ -83,15 +89,37 @@ The input can be any of:
 The persona mechanics do not change per type — the expertise guardrails
 automatically shift who speaks with authority and who speaks with perspective.
 
-### 4. Persona selection — three control layers *(decided 2026-07-03)*
+### 4. Persona selection — three control layers *(decided 2026-07-03; committees added 2026-07-05, D28 — pending build)*
 
-Default is **all personas on**, controlled through three layers, strongest first:
+The unnamed-panel default is the **`default` committee** (see the Committees block below;
+before D28 it was "all personas on"). Selection runs through three layers, strongest first:
 
 | Layer | Where | Purpose |
 |-------|-------|---------|
-| 1. Kill switch | `CONFIG.md` in each persona folder: `enabled: true/false` | Hard off for debates. A disabled persona never joins panel resolution, no matter what a debate requests. One exception: an explicit human request to **solo-test** a named persona (HOW-TO-CREATE step 8) may run it alone — it still cannot join a debate. |
-| 2. Per-debate selection | The debate's input brief (or the spoken prompt) | Name the panel or omit personas for this debate only ("omit the stoic", "just cyberark-l3 and network-engineer"). |
+| 1. Kill switch | `CONFIG.md` in each persona folder: `enabled: true/false` | Hard off for debates. A disabled persona never joins panel resolution, no matter what a debate or committee requests. One exception: an explicit human request to **solo-test** a named persona (HOW-TO-CREATE step 8) may run it alone — it still cannot join a debate. |
+| 2. Per-debate selection | The debate's input brief (or the spoken prompt) | Name the panel for this debate: individual personas, **a committee name** ("debate this with the infra committee"), or a mix — plus omissions ("omit the stoic", "infra committee plus stoic, minus linux-admin"). |
 | 3. Registry | `reference/roster.md` | The library index — every persona gets a row when created. Documents what exists; does not control runs. |
+
+**Committees** *(added 2026-07-05, D28 — pending build)* — named groups of personas, defined
+in `reference/committees.md`, usable as the panel source for a run:
+
+- A committee name in the brief/prompt **expands to its member list** as the layer-2
+  selection — shorthand, not a lock: additions and omissions still apply on top, and naming
+  several committees unions their members. The kill switch always wins over committee
+  membership.
+- `committees.md` is a grouping view over the roster: one table — committee name, members
+  (kebab-case persona folder names), purpose note. `_template` may never be a member. A row
+  naming a persona folder that does not exist → the moderator treats that committee as
+  misconfigured and reports it rather than guessing (same rule as a malformed `CONFIG.md`).
+- **The `default` committee is required**: when a brief/prompt names no committee and no
+  personas, the moderator uses the `default` committee as the panel source. It ships listing
+  all five starter personas — the same panel the old "all personas on" rule produced — and
+  the user edits that one row to change their standing panel. If `committees.md` is missing
+  or the `default` row is malformed, the moderator falls back to all enabled personas and
+  reports the misconfiguration.
+- The file ships with two rows — `default` (the five starters) and `infra`
+  (windows-admin, linux-admin, network-engineer, cyberark-l3) — so both the standing panel
+  and the named-committee pattern are demonstrated.
 
 `CONFIG.md` also carries a **weight** (1–5) — the persona's credibility in
 synthesis. An L1 engineer might carry weight 2 where an L3 carries 5; the master
@@ -104,9 +132,13 @@ a veto — a good argument still beats rank.
 `moderator/AGENTS.md` (Layer 2) is the single entry point for every debate run —
 the project `CONTEXT.md` routes "debate this" requests here. The moderator:
 
-- **Resolves the panel**: start from all personas, drop any with `enabled: false`
-  in `CONFIG.md`, then apply the brief/prompt selections and omissions (the three
-  layers of requirement 4). Stops and reports if the resulting panel is empty.
+- **Resolves the panel** *(committee step added 2026-07-05, D28 — pending build)*: start
+  from the committee(s)/personas named in the brief or prompt — or from the `default`
+  committee in `reference/committees.md` when none is named (fallback when that file or row
+  is missing/malformed: all personas, with the misconfiguration reported) — expand committee
+  names into their member lists, drop any member with `enabled: false` in `CONFIG.md`, then
+  apply the brief/prompt additions and omissions (the three layers of requirement 4). Stops
+  and reports if the resulting panel is empty.
 - **Dispatches the fan-out** — inline, one persona at a time, fresh read per
   persona — and enforces round-1 isolation (no cross-reading).
 - **Hands off to synthesis** once every panel persona has written its round file.
@@ -118,7 +150,9 @@ The moderator maintains exactly one file per debate — `output/<job>/STATUS.md`
 *(decided 2026-07-03)* — and writes nothing else. The file has two parts:
 
 - **Snapshot** (top, overwritten on every update): current round, the resolved
-  panel with weights, who was dropped and why (kill switch vs omission),
+  panel with weights, the panel source *(added 2026-07-05, D28 — pending build)* — the
+  committee name(s) plus any adjustments (e.g. "infra committee, +stoic") or "explicit
+  list" / "default committee" — who was dropped and why (kill switch vs omission),
   **per-persona completion for the round in progress** (done / not yet run), and
   what is awaited (e.g. "round 1 complete — awaiting human checkpoint").
 - **Event log** (below, append-only, one line per event): dispatches, each
@@ -160,9 +194,13 @@ synthesizer.
 - After the final round, produces `report.md` per `reference/report-format.md`.
   The format must force disagreement to the surface: points of agreement, points
   of conflict, what would change each persona's mind — plus a **position
-  evolution** section: who changed between rounds, who held firm, and why.
+  evolution** section: who changed between rounds, who held firm, and why. It
+  must also carry a standalone **Recommended Resolution Steps** section *(added
+  2026-07-04, D27)* — the action summary as a skimmable numbered list, never
+  buried inside the synthesis prose.
 - The report closes with a **"How this debate ran" appendix** *(decided
-  2026-07-03)*: the panel with weights, rounds run, personas who sat out and why
+  2026-07-03)*: the panel with weights — naming the committee that sourced it, if one did
+  *(added 2026-07-05, D28 — pending build)* — rounds run, personas who sat out and why
   (disabled vs omitted), and dates — drawn from the `STATUS.md` event log, so the
   report is self-explaining to a reader who never opens the rest of the folder.
   Findings lead; mechanics close.
@@ -220,9 +258,16 @@ input/<job>/
 ```
 
 - The job name comes from the folder name (`input/ccp-outage/` → `output/ccp-outage/`).
-- `brief.md` is the only required file; personas read the whole folder.
-- Persona selection/omission for the debate can be stated in `brief.md` or in the
-  spoken prompt (see requirement 4, layer 2).
+- `brief.md` is the only required file; personas read the whole folder. End-user material —
+  notes, questions, steps already tried — is welcome as additional files (e.g.
+  `user-notes.md`), kept verbatim; personas treat user observations as evidence and user
+  diagnoses as claims to test.
+- Persona selection/omission for the debate — including naming a committee — can be stated
+  in `brief.md` or in the spoken prompt (see requirement 4, layer 2).
+- **`input/<job>/` is a staging area, not a home** *(decided 2026-07-04, D26)*: while a
+  debate is live, its input stays under `input/`; when the job closes (accept verdict,
+  `report.md` written), the moderator **moves** `input/<job>/` into `output/<job>/input/` so
+  the job folder is the complete record, input included (requirement 11).
 
 **Shipped samples** *(decided 2026-07-03)* — the lab ships with two prefilled
 debates, so the first runs test the machine rather than the human's brief-writing,
@@ -254,7 +299,7 @@ upstream file is missing, go back" rule, adapted to the fan-out shape:
 
 | Stage | Checks before working |
 |-------|----------------------|
-| Moderator | `input/<job>/brief.md` exists and is not empty, before any dispatch; resolved panel is not empty (requirement 5); every persona's `CONFIG.md` parses (requirement on malformed → misconfigured, not guessed) |
+| Moderator | `input/<job>/brief.md` exists and is not empty, before any dispatch; resolved panel is not empty (requirement 5); every persona's `CONFIG.md` parses (requirement on malformed → misconfigured, not guessed); if a committee sources the panel, `reference/committees.md` parses and every member folder exists *(added 2026-07-05, D28 — pending build)* |
 | Persona | Round 1: the debate brief exists. Rebuttal: the commented master assessment exists. If missing — stop and report, write nothing |
 | Master | Every panel persona is logged complete in `STATUS.md` AND its round file exists, before assessing; the checkpoint-commented assessment exists before dispatching a rebuttal; assessments exist before the final report |
 
@@ -268,9 +313,10 @@ transient hiccups; never a silent loop, never a synthesis over a hole.
 
 - `output/<job>/` is the **complete, permanent, self-contained record** of a
   debate: `STATUS.md` tells its history, round folders hold every persona's words
-  and every assessment (with the human's comments), and `report.md` is the
-  canonical synthesis. Nothing about a debate lives anywhere else — the folder is
-  what the human references, archives, and returns to.
+  and every assessment (with the human's comments), `input/` holds the debated
+  material itself (archived there from the staging area at job close — D26), and
+  `report.md` is the canonical synthesis. Nothing about a debate lives anywhere
+  else — the folder is what the human references, archives, and returns to.
 - **Once `report.md` exists, the job is closed.** A closed debate is never re-run
   under the same name — re-debating the issue is a new job (e.g. `ccp-outage-v2`),
   and new views of a closed job go to `reports/`. This protects a report already
@@ -318,9 +364,11 @@ The guide must contain, in this order:
    the final `report.md` lands and what the round files and `STATUS.md` are.
 4. **Quick recipes** — short entries for the common follow-ups: add a persona
    (pointing at `personas/_template/HOW-TO-CREATE.md`), disable or re-weight a
-   persona (`CONFIG.md`), pick a panel for one debate, resume an interrupted
-   debate (just ask — state lives in `STATUS.md`), and request a derived report
-   from a closed job (into `output/<job>/reports/`).
+   persona (`CONFIG.md`), pick a panel for one debate, define a committee or run
+   a debate with one — including editing the `default` committee to change the
+   standing panel (`reference/committees.md`) *(added 2026-07-05, D28 — pending
+   build)*, resume an interrupted debate (just ask — state lives in `STATUS.md`),
+   and request a derived report from a closed job (into `output/<job>/reports/`).
 
 **Kept current**: any design change that alters how the human interacts with the
 lab — checkpoint convention, verdicts, folder layout, brief format — must update
@@ -506,11 +554,12 @@ debate-lab/
 │
 ├── reference/                    ← Layer 3, standing rules (all human-editable)
 │   ├── roster.md                 ← library index: one row per persona
+│   ├── committees.md             ← named persona groups; `default` row = the standing panel (D28 — pending build)
 │   ├── persona-protocol.md       ← shared persona mechanics (read order, output structure, guardrails)
 │   ├── report-format.md          ← assessment + report formats: comment convention, position evolution, provenance appendix
 │   └── debate-settings.md        ← max rounds (default 2), checkpoint rules
 │
-├── input/                        ← Layer 4: one folder per debate
+├── input/                        ← Layer 4: staging — one folder per LIVE debate (moved into the job record at close, D26)
 │   ├── sample-ccp-failure/       ← shipped sample: technical troubleshooting (first-run test)
 │   ├── sample-account-maturity/  ← shipped sample: moral/policy question (stoic leads)
 │   └── <job>/
@@ -520,6 +569,7 @@ debate-lab/
 ├── output/                       ← Layer 4: mirrors input job names
 │   └── <job>/
 │       ├── STATUS.md             ← moderator-owned: state snapshot + event log (read first to resume)
+│       ├── input/                ← the debated material, archived here from input/<job>/ at job close (D26)
 │       ├── round-1/
 │       │   ├── <persona>.md      ← one per participating persona
 │       │   └── master-assessment.md  ← + human comments at the checkpoint
@@ -537,8 +587,10 @@ debate-lab/
    and says "debate this" — optionally naming or omitting personas in the brief
    or the prompt.
 2. The router sends the run to the **moderator**, which resolves the panel: start
-   from all personas, drop any with `enabled: false` in their `CONFIG.md`, then
-   apply the brief/prompt selections and omissions.
+   from the named committee(s)/personas — or the `default` committee in
+   `reference/committees.md` when none is named — expand committees into members,
+   drop any with `enabled: false` in their `CONFIG.md`, then apply the
+   brief/prompt additions and omissions.
 3. Fan-out (dispatched by the moderator): each panel persona reads the whole input
    folder and writes `output/<job>/round-1/<persona>.md`. No cross-reading in round 1.
 4. Fan-in: master reads all round-1 outputs and writes
@@ -553,7 +605,9 @@ debate-lab/
    `round-2/<persona>.md`, each explicitly stating changed-or-held and why.
    Return to step 4.
 7. Master writes `output/<job>/report.md` — agreements, conflicts, position
-   evolution across rounds, unresolved items — and tells the human where it is.
+   evolution across rounds, unresolved items. The moderator then moves
+   `input/<job>/` into `output/<job>/input/` (the record carries its own input —
+   D26) and tells the human where the report is.
 
 Throughout, the moderator keeps `output/<job>/STATUS.md` current after every
 persona completion and every transition (dispatch, round completion, checkpoint
@@ -579,8 +633,9 @@ Follow this when asked to build (or rebuild) the lab from `_design/`.
 
 Everything in the Proposed Folder Structure section: the front-door chain (`CLAUDE.md` →
 `AGENTS.md` → `CONTEXT.md` router), the `HOW-TO-USE.md` user guide (per requirement 12 — plain
-language, the four sections in order), `moderator/AGENTS.md`, `synthesis/AGENTS.md`, the four
-`reference/` files, `personas/_template/` (per the Persona Template Scaffold section, including
+language, the four sections in order), `moderator/AGENTS.md`, `synthesis/AGENTS.md`, the five
+`reference/` files (including `committees.md` with its shipped `default` and `infra` rows —
+D28), `personas/_template/` (per the Persona Template Scaffold section, including
 `HOW-TO-CREATE.md`), the five starter personas (`windows-admin`, `linux-admin`, `cyberark-l3`,
 `network-engineer`, `stoic` — each with the four files, registered in `reference/roster.md`,
 shipped `enabled: true` since they are the tested starter set), the two shipped sample inputs
@@ -621,6 +676,8 @@ checkpoint (requirement 7):
 - Every persona folder has exactly the four files; `_template/` additionally has `HOW-TO-CREATE.md`.
 - Every `CONFIG.md` parses per the pinned format (requirement in the scaffold section).
 - `reference/roster.md` rows match the persona folders one-to-one (excluding `_template/`).
+- `reference/committees.md` parses, contains a `default` row, and every member references an
+  existing persona folder (never `_template`) *(added 2026-07-05, D28)*.
 - Both sample input folders contain a `brief.md`.
 - `HOW-TO-USE.md` exists at the lab root, has the four required sections in order (what this is;
   first debate; step-by-step; quick recipes), and its instructions match the built lab (folder

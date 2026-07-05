@@ -1,10 +1,9 @@
-# Debate Lab — Design Seed (Identity)
+# Research Lab — Design Seed (Identity)
 
-This folder is **not** the debate lab. It is the lab's design record and its **build seed**:
-everything needed to build the Debate Lab from scratch and plug it into whatever workspace it
-lands in. The design was locked 2026-07-03; the lab was **built from this seed on 2026-07-04**
-into the parent folder. A design addition landed 2026-07-05 — committees (D28) — and is **not
-yet built** into the lab; the spec marks the affected sections "pending build".
+This folder is **not** the research lab. It is the lab's design record and its **build seed**:
+everything needed to build the research/fact-checking lab from scratch and plug it into whatever
+workspace it lands in. The design was locked 2026-07-05; the lab has **not been built yet** — it
+waits on the human's go.
 
 It plays two roles:
 
@@ -18,7 +17,7 @@ It plays two roles:
 
 | File | Purpose |
 |------|---------|
-| `SPEC.md` | The build contract: requirements, folder structure, persona template scaffolds, and the Build & Integration Protocol |
+| `SPEC.md` | The build contract: requirements, folder structure, specialist template scaffolds, and the Build & Integration Protocol |
 | `DECISIONS.md` | Append-only decision log: the reasoning and rejected alternatives behind the spec |
 
 ## Protocol

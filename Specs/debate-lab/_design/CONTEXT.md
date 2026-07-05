@@ -10,6 +10,8 @@ Route requests about this folder using the table below.
 | Why the lab is designed a certain way, evaluating a design change   | [DECISIONS.md](DECISIONS.md), with [SPEC.md](SPEC.md) for the current outcome |
 | Changing the design                                                 | Update [SPEC.md](SPEC.md) **and** append an entry to [DECISIONS.md](DECISIONS.md) — never rewrite old entries |
 | Running a debate, adding a persona, doing actual lab work           | The built lab's own chain: `../CLAUDE.md`. If the lab is not built yet, offer to build it from [SPEC.md](SPEC.md) first |
+| Planned future enhancements, or what happened to a previously planned item | [NEXT-STEPS.md](NEXT-STEPS.md) — intent only; designing an item means updating SPEC.md + DECISIONS.md |
+| Building the committees addition (D28) into the lab | [SPEC.md](SPEC.md) sections marked *(added 2026-07-05, D28 — pending build)*: create `../reference/committees.md`, update `../moderator/AGENTS.md` and `../HOW-TO-USE.md` |
 
 ## Build Quick-Reference
 
