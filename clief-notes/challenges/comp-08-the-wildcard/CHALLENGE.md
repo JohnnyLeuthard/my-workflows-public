@@ -101,3 +101,7 @@ Month 2 wraps with this one. Coach. Researcher. Operator. Wildcard. Four weeks. 
 
 Anyone who's entered all four walks out with a body of work that demonstrates real range. That's not a Skool flex. That's the kind of portfolio that lands interviews.
 
+---
+Winner:
+https://www.skool.com/cliefnotes/comp-8-results-the-wildcard
+
