@@ -119,4 +119,6 @@ https://www.skool.com/cliefnotes/weekly-comp-10-the-diagnostician
 
 
 Winner:  
+https://www.skool.com/cliefnotes/comp-10-results-the-diagnostician?p=d92aafaa
+
 
