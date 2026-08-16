@@ -20,15 +20,15 @@ This week (and every week) you're learning interpretable context methodology. Fo
 
 Your cartographer is a folder with these essentials:
 
-📄 identity.md (who the cartographer is, what bodies of work it maps)
-📐 rules.md (how it creates maps)
-💬 examples.md (what good maps look like)
-📚 reference/ (templates, frameworks, standards the cartographer uses)
-📖 README.md (how to use it)
+📄 identity.md (who the cartographer is, what bodies of work it maps)  
+📐 rules.md (how it creates maps)  
+💬 examples.md (what good maps look like)  
+📚 reference/ (templates, frameworks, standards the cartographer uses)  
+📖 README.md (how to use it)  
 
 Drop the folder into a Claude project. Claude becomes the cartographer. Reusable. Shareable. Portable.
 
-🔥 THE ANGLE THIS WEEK
+🔥 THE ANGLE THIS WEEK  
 
 Mapmaking feels disorienting at first. But it's essential. A map helps future audiences — human and AI — understand complex bodies of work.
 
@@ -58,10 +58,10 @@ Drop a public GitHub repo link in the comments. Plus 2-3 sentences on what your 
 
 Jake, Matt, and the mods score against a full rubric. Four things we're looking at:
 
-✅ Does the cartographer actually map? Or does it summarize/flatten/hide structure?
-✅ Is the domain specific enough to be useful?
-✅ Is the methodology clean? Each file does one job well.
-✅ README quality. Can a stranger figure this out?
+✅ Does the cartographer actually map? Or does it summarize/flatten/hide structure?  
+✅ Is the domain specific enough to be useful?  
+✅ Is the methodology clean? Each file does one job well.  
+✅ README quality. Can a stranger figure this out?  
 
 🎟️ WHO CAN ENTER
 
@@ -71,13 +71,14 @@ Premium and VIP members only. No exceptions.
 
 📅 DATES
 
-⏰ Submit by: [Check Skool post for deadline]
-🎉 Winner announced: Following week
+⏰ Submit by: [Check Skool post for deadline]  
+🎉 Winner announced: Following week  
 
 🚀 One last thing
 
 The cartographer is different from the editor, the coach, the researcher, the operator. Same methodology. Same leverage. New portfolio piece.
 
+---
 
 Winner:
 
