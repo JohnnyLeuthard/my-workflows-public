@@ -1,18 +1,19 @@
-﻿<#
+﻿<#  
 Uninstall-WindowsFeature "WAS","WAS-Config-APIs","Web-Server","Web-WebServer","Web-Common-Http","Web-Static-Content","Web-Default-Doc","Web-Dir-Browsing",
     "Web-Http-Errors","Web-Http-Redirect","Web-App-Dev",
     "Web-ASP","Web-ISAPI-Ext","Web-ISAPI-Filter","Web-Health","Web-Http-Logging","Web-Request-Monitor",
     "Web-Security","Web-Basic-Auth","Web-Windows-Auth","Web-Filtering","Web-Mgmt-Tools","Web-Mgmt-Console","Web-Scripting-Tools",
-    "Web-Mgmt-Compat","Web-Metabase","Web-WMI"
+    "Web-Mgmt-Compat","Web-Metabase","Web-WMI"  
+
 #>
 
-################################
-# Variables Used
-################################
-$inetPubFolder           = "D:\inetpub"
-$baseLogFolder           = "D:\logs\ARK"
-$WebsiteName             = "Default Web Site"
-$WebsitePhysicalPath     = "$inetPubFolder\wwwroot"
+################################  
+# Variables Used  
+################################  
+$inetPubFolder           = "D:\inetpub"  
+$baseLogFolder           = "D:\logs\ARK"  
+$WebsiteName             = "Default Web Site"  
+$WebsitePhysicalPath     = "$inetPubFolder\wwwroot"  
 
 #- Path info used to move IIS folder
 $oldpath = "%SystemDrive%\inetpub"
@@ -22,24 +23,24 @@ $newpath = $inetPubFolder
 $HealthCheckFolder = "$WebsitePhysicalPath\adcs-health"
 $HealthCheckFile   = "index.html"
 
-################################
-# Install IIS
-################################
+################################  
+# Install IIS. 
+################################   
 $InstallApps = 'WAS','WAS-Config-APIs','Web-Server','Web-WebServer','Web-Common-Http','Web-Static-Content','Web-Default-Doc','Web-Dir-Browsing','Web-Http-Errors'
 $InstallApps += 'Web-Security','Web-Basic-Auth','Web-Windows-Auth','Web-Filtering','Web-Mgmt-Tools','Web-Mgmt-Console','Web-Scripting-Tools','Web-Mgmt-Compat','Web-Metabase'
 $InstallApps += 'Web-WMI','Web-ASP','Web-Asp-Net45'
 
 Install-WindowsFeature $InstallApps
 
-################################
-# Move IIS
-################################
+################################  
+# Move IIS  
+################################  
 &iisreset /stop
 &robocopy c:\inetpub $newpath *.* /MOVE /S /E /COPYALL /R:1 /W:1
 
-New-ItemProperty -Path "HKLM:\Software\Microsoft\InetStp" -Name "PathWWWRoot" -Value $newpath"\wwwroot" -PropertyType ExpandString -Force
-New-ItemProperty -Path "HKLM:\System\CurrentControlSet\Services\WAS\Parameters" -Name "ConfigIsolationPath" -Value $newpath"\temp\AppPools" -PropertyType String -Force
-New-ItemProperty -Path "HKLM:\Software\Wow6432Node\Microsoft\InetStp" -Name "PathWWWRoot" -Value $newpath"\wwwroot" -PropertyType ExpandString -Force
+New-ItemProperty -Path "HKLM:\Software\Microsoft\InetStp" -Name "PathWWWRoot" -Value $newpath"\wwwroot" -PropertyType ExpandString -Force  
+New-ItemProperty -Path "HKLM:\System\CurrentControlSet\Services\WAS\Parameters" -Name "ConfigIsolationPath" -Value $newpath"\temp\AppPools" -PropertyType String -Force  
+New-ItemProperty -Path "HKLM:\Software\Wow6432Node\Microsoft\InetStp" -Name "PathWWWRoot" -Value $newpath"\wwwroot" -PropertyType ExpandString -Force  
 
 $rand = Get-Random
 copy-item "C:\Windows\System32\inetsrv\config\applicationHost.config" "C:\Windows\System32\inetsrv\config\applicationHost.config.$($rand).bak"
@@ -60,48 +61,48 @@ Add-WebConfigurationProperty /system.webServer/httpProtocol/customHeaders "IIS:"
 
 Add-WebConfigurationProperty -PSPath 'MACHINE/WEBROOT/APPHOST' -name "." `
     -filter "system.applicationHost/sites/siteDefaults/logFile/customFields" `
-    -value @{logFieldName='X-Forwarded-For';sourceName='X-Forwarded-For';sourceType='RequestHeader'}
+    -value @{logFieldName='X-Forwarded-For';sourceName='X-Forwarded-For';sourceType='RequestHeader'}  
 
-if ([System.Environment]::OSVersion.Version.Major -ge "10")
+if ([System.Environment]::OSVersion.Version.Major -ge "10")  
 {
-    C:\Windows\System32\inetsrv\appcmd.exe set config /section:requestfiltering /removeServerHeader:True
+    C:\Windows\System32\inetsrv\appcmd.exe set config /section:requestfiltering /removeServerHeader:True  
 }
-else
-{
+else  
+{  
     Add-WebConfiguration /system.webServer/rewrite/allowedServerVariables -atIndex 0 -value @{name="RESPONSE_SERVER"}
-    Set-WebConfigurationProperty -pspath "IIS:" -filter "system.webServer/rewrite/outboundRules" -name "." -value @{name='Remove Server Header'}
-    Set-WebConfigurationProperty -pspath "IIS:" -filter "system.webServer/rewrite/outboundRules/rule[@name='Remove Server Header']/match" -name "serverVariable" -value "RESPONSE_SERVER"
-    Set-WebConfigurationProperty -pspath "IIS:" -filter "system.webServer/rewrite/outboundRules/rule[@name='Remove Server Header']/match" -name "pattern" -value ".*"
-    Set-WebConfigurationProperty -pspath "IIS:" -filter "system.webServer/rewrite/outboundRules/rule[@name='Remove Server Header']/action" -name "type" -value "Rewrite"
+    Set-WebConfigurationProperty -pspath "IIS:" -filter "system.webServer/rewrite/outboundRules" -name "." -value @{name='Remove Server Header'}  
+    Set-WebConfigurationProperty -pspath "IIS:" -filter "system.webServer/rewrite/outboundRules/rule[@name='Remove Server Header']/match" -name "serverVariable" -value "RESPONSE_SERVER"  
+    Set-WebConfigurationProperty -pspath "IIS:" -filter "system.webServer/rewrite/outboundRules/rule[@name='Remove Server Header']/match" -name "pattern" -value ".*"  
+    Set-WebConfigurationProperty -pspath "IIS:" -filter "system.webServer/rewrite/outboundRules/rule[@name='Remove Server Header']/action" -name "type" -value "Rewrite"  
 }
 
-C:\Windows\System32\inetsrv\appcmd.exe set config /section:requestfiltering /allowHighBitCharacters:false
+C:\Windows\System32\inetsrv\appcmd.exe set config /section:requestfiltering /allowHighBitCharacters:false  
 
 
 ################################
 # Apply Splunk ACL (maybe only on log move location?)
 ################################
 
-$Identity = "$($env:USERDOMAIN)\gMSA-SplunkUFS"
+$Identity = "$($env:USERDOMAIN)\gMSA-SplunkUFS"  
 
-$Rights = ($Identity,'ReadAndExecute','ContainerInherit,ObjectInherit','None','Allow')
-#$Rights = ($Identity,'FullControl','ContainerInherit,ObjectInherit','None','Allow')
-#$Rights = ($Identity,'Modify','ContainerInherit,ObjectInherit','None','Allow')
+$Rights = ($Identity,'ReadAndExecute','ContainerInherit,ObjectInherit','None','Allow')  
+#$Rights = ($Identity,'FullControl','ContainerInherit,ObjectInherit','None','Allow')  
+#$Rights = ($Identity,'Modify','ContainerInherit,ObjectInherit','None','Allow')  
 
-$Acl = Get-Acl $newpath
-$Rule = New-Object System.Security.AccessControl.FileSystemAccessRule($Rights)
+$Acl = Get-Acl $newpath  
+$Rule = New-Object System.Security.AccessControl.FileSystemAccessRule($Rights)  
 
-$Acl.AddAccessRule($Rule)
-Set-Acl -Path $newpath -AclObject $Acl
-#icacls.exe "D:\inetpub" /grant "$($env:USERDOMAIN)\gMSA-SplunkUFS`$:(OI)(CI)(F)"
+$Acl.AddAccessRule($Rule)  
+Set-Acl -Path $newpath -AclObject $Acl  
+#icacls.exe "D:\inetpub" /grant "$($env:USERDOMAIN)\gMSA-SplunkUFS`$:(OI)(CI)(F)"  
 
 
-################################
+################################  
 # Move IIS Log folder
-################################
+################################  
 
 #- Create log folder if missing
-If (!(Test-Path $baseLogFolder)){ New-Item -Path $baseLogFolder -ItemType Directory }
+If (!(Test-Path $baseLogFolder)){ New-Item -Path $baseLogFolder -ItemType Directory }  
 
 # Set IIS Log location at the server level
 Set-WebConfigurationProperty "/system.applicationHost/sites/siteDefaults" -name logFile.directory -value "$baseLogFolder"

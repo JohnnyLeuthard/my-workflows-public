@@ -32,6 +32,65 @@ CyberArk CCP
 ## Reconstructed Script
 
 ``` powershell
+
+Import-module WebAdministration
+
+# Install URL Rewrite
+$RewriteFilePath = 'C:\Temp\'
+$RewriteFile = 'rewrite_amd64_en-US.msi'
+$FileToInstall = "$RewriteFilePath\$RewriteFile"
+Start-Porcess $FileToInstall  -ArgumentList "/q","/norestart" -wait ##??
+
+# Add cert test code
+$certTest = @'
+    <h2>Client Certificate Items</h2>
+    <br>
+    <%
+    response.write("CERT_SUBJECT=" & Request.ServerVariables("CERT_SUBJECT") & "<br>")
+    response.write("CERT_SERIALNUMBER=" & Request.ServerVariables("CERT_SERIALNUMBER") & "<br>")
+    response.write("CERT_ISSUER=" & Request.ServerVariables("CERT_ISSUER") & "<br>")
+    response.write("CERT_FLAGS=" & Request.ServerVariables("CERT_FLAGS") & "<br>")
+    response.write("CERT_KEYSIZE=" & Request.ServerVariables("CERT_KEYSIZE") & "<br>")
+    response.write("CERT_SECRETKEYSIZE=" & Request.ServerVariables("CERT_SECRETKEYSIZE") & "<br>")
+    %>
+
+    <br>
+    <h2>OS Auth Items</h2>
+    <br>
+    <%
+    response.write("AUTH_TYPE=" & Request.ServerVariables("AUTH_TYPE") & "<br>")
+    response.write("AUTH_USER=" & Request.ServerVariables("AUTH_USER") & "<br>")
+    %>
+
+    <br>
+    <h2>LoadBalancer Variables</h2>
+    <%
+    response.write("HTTP_X_FORWARDED_FOR=" & Request.ServerVariables("HTTP_X_FORWARDED_FOR") & "<br>")
+    response.write("HTTP_X_WF_CLIENTCERT_SERIALNUM=" & Request.ServerVariables("HTTP_X_WF_CLIENTCERT_SERIALNUM") & "<br>")
+    %>
+
+    <br>
+    <h2>Other Variables</h2>
+    <br>
+    <%
+    response.write("REMOTE_ADDR=" & Request.ServerVariables("REMOTE_ADDR") & "<br>")
+    response.write("REMOTE_HOST=" & Request.ServerVariables("REMOTE_HOST") & "<br>")
+    %>
+
+    <%--
+    response.write("<h2>All Variables</h2><br>")
+    for each x in Request.ServerVariables
+    response.write(x & "=" & Request.ServerVariables(x) & "<br>")
+    next
+    --%>
+'@
+
+$CerttestFilePath = ((Get-Website $Website).physicalPath + '\cert')
+If (!(Test-Path $CerttestFilePath)){New-Item -Path $CerttestFilePath -ItemType Directory}
+$certTest | Out-File "$CerttestFilePath\Default.aspx"
+
+
+# IP's fopr VIPS
 $envvars = $certAuthIPs
 
 $certAuthIPs = ($envvars.ccpFSProxy -replace '\.','[.]') -replace ',','|'
