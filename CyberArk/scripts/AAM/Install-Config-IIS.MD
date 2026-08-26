@@ -1,14 +1,21 @@
-﻿<#  
+﻿
+``` powershell
+
+# Uninstall current setup
+
 Uninstall-WindowsFeature "WAS","WAS-Config-APIs","Web-Server","Web-WebServer","Web-Common-Http","Web-Static-Content","Web-Default-Doc","Web-Dir-Browsing",
     "Web-Http-Errors","Web-Http-Redirect","Web-App-Dev",
     "Web-ASP","Web-ISAPI-Ext","Web-ISAPI-Filter","Web-Health","Web-Http-Logging","Web-Request-Monitor",
     "Web-Security","Web-Basic-Auth","Web-Windows-Auth","Web-Filtering","Web-Mgmt-Tools","Web-Mgmt-Console","Web-Scripting-Tools",
     "Web-Mgmt-Compat","Web-Metabase","Web-WMI"  
 
-#>
+```
+
+
+``` powershell
 
 ################################  
-# Variables Used  
+# Variables Used throughout
 ################################  
 $inetPubFolder           = "D:\inetpub"  
 $baseLogFolder           = "D:\logs\ARK"  
@@ -23,14 +30,21 @@ $newpath = $inetPubFolder
 $HealthCheckFolder = "$WebsitePhysicalPath\adcs-health"
 $HealthCheckFile   = "index.html"
 
+```
+
+``` powershell 
+
 ################################  
-# Install IIS. 
+# Install IIS
 ################################   
 $InstallApps = 'WAS','WAS-Config-APIs','Web-Server','Web-WebServer','Web-Common-Http','Web-Static-Content','Web-Default-Doc','Web-Dir-Browsing','Web-Http-Errors'
 $InstallApps += 'Web-Security','Web-Basic-Auth','Web-Windows-Auth','Web-Filtering','Web-Mgmt-Tools','Web-Mgmt-Console','Web-Scripting-Tools','Web-Mgmt-Compat','Web-Metabase'
 $InstallApps += 'Web-WMI','Web-ASP','Web-Asp-Net45'
 
 Install-WindowsFeature $InstallApps
+```
+
+``` powershell
 
 ################################  
 # Move IIS  
@@ -78,6 +92,10 @@ else
 
 C:\Windows\System32\inetsrv\appcmd.exe set config /section:requestfiltering /allowHighBitCharacters:false  
 
+```
+
+
+``` powershell
 
 ################################
 # Apply Splunk ACL (maybe only on log move location?)
@@ -96,6 +114,9 @@ $Acl.AddAccessRule($Rule)
 Set-Acl -Path $newpath -AclObject $Acl  
 #icacls.exe "D:\inetpub" /grant "$($env:USERDOMAIN)\gMSA-SplunkUFS`$:(OI)(CI)(F)"  
 
+```
+
+``` powershell
 
 ################################  
 # Move IIS Log folder
@@ -108,6 +129,9 @@ If (!(Test-Path $baseLogFolder)){ New-Item -Path $baseLogFolder -ItemType Direct
 Set-WebConfigurationProperty "/system.applicationHost/sites/siteDefaults" -name logFile.directory -value "$baseLogFolder"
 # Get-WebConfigurationProperty "/system.applicationHost/sites/siteDefaults" -name logFile.directory
 
+# Set Log Type
+Set-itemProperty -Path "IIS:\Sites\$websiteName" -Name logfile.logTargetW3C -Value "File,ETW"
+
 # Set IIS Log folder for Default Website
 #Get-ItemProperty -Path "IIS:\Sites\$WebsiteName" -Name logFile.directory
 Set-ItemProperty -Path "IIS:\Sites\$WebsiteName" -Name logFile.directory -Value "$baseLogFolder\$WebsiteName"
@@ -115,6 +139,12 @@ Set-ItemProperty -Path "IIS:\Sites\$WebsiteName" -Name logFile.directory -Value 
 
 # Start IIS
 &iisreset /restart | Out-Null
+
+
+```
+
+
+``` powershell 
 
 ################################
 # Set ACL to allow Splunk
@@ -144,6 +174,9 @@ Set-Acl -Path $LogFolder -AclObject $Acl
 # Old method
 #icacls.exe "D:\inetpub" /grant "$($env:USERDOMAIN)\gMSA-SplunkUFS`$:(OI)(CI)(F)"
 
+```
+
+``` powershell 
 
 ################################
 # AVI Health Check File
@@ -151,6 +184,9 @@ Set-Acl -Path $LogFolder -AclObject $Acl
 If ((Test-Path "$HealthCheckFolder\$HealthCheckFile") -eq $false){New-Item "$HealthCheckFolder\$HealthCheckFile" -Force}
 'This Server Is Healthy' | Out-File "$HealthCheckFolder\$HealthCheckFile" -Encoding ascii -Force
 
+```
+
+``` powershell 
 
 ################################
 # Deploy URL REWRITE (CCP Cert Auths) ###?
@@ -159,3 +195,8 @@ $FilePath   = ""
 $RewriteFile = ""
 
 Start-Process $FilePath\$RewriteFile -ArgumentList "/q","/norestart" -Wait
+
+```
+
+
+
