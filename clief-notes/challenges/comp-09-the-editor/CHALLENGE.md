@@ -91,4 +91,6 @@ Month 3 kicks off with The Editor. Every-other-week cadence gives us more time t
 Different skill from the coach, the researcher, the operator. Same methodology. New portfolio piece.
 
 ---
-Winer
+Winer:
+https://www.skool.com/cliefnotes/comp-results-the-editor
+
