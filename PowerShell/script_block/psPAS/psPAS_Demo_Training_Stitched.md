@@ -11,15 +11,12 @@ Stitched OCR transcription from `IMG_0697.jpeg` through `IMG_0715.jpeg`.
 #$Environment = 'QA'
 
 # The REST endpoint (this example is Dev. If you change the URI to UAT or Prod you can plagiarize additional code)
-$BASEURL = 'https://eps-darkalbh2i.contoso.dev'   # DEV
-#$BASEURL = 'https://passwordvault-qa.contoso.com' # UAT
-#$BASEURL = 'https://EPS-QPVAB081329.ent.wb.bank.qa' # UAT 14.6
-#$BASEURL = 'https://EPS-QPVAF681825.contoso.uat'    # UAT 14.6
-#$BASEURL = 'https://ark302admin99934.contoso.uat'   # UAT 14.6
-#$BASEURL = 'https://passwordvault-qa.contoso.com'   # UAT VIP
+$BASEURL = 'https://Server1.contoso.dev'   # DEV
+#$BASEURL = 'https://passwordvault.contoso.com' # UAT
+#$BASEURL = 'https://passwordvault-uat.contoso.com'   # UAT VIP
 
 
-# CyberArk Authentication (requires checking out a priv ID EPVSysAdmin - you can go without this and use just your ID with RADIUS)
+# CyberArk Authentication (requires checking out a priv ID Administrator - you can go without this and use just your ID with RADIUS)
 New-PASSession -BaseURI $BASEURL -type CyberArk -Credential (Get-Credential -Message 'Enter RADIUS credential' -UserName 'Admin001')
 $CyberArkCreds = Get-PASSession # Save session to a variable for fast switching
 
