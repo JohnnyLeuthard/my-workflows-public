@@ -303,8 +303,8 @@ Get-PASApplicationAuthenticationMethod -AppID $AppIDName | Format-Table -AutoSiz
 Get-PASSafe -SafeName $SafeName # Should error with safe not found
 
 # Safe details make sure there is a valid CPM Name (valid at the time of this file for DEV)
-$CPMName = 'CPM_NCCP01'
-$CPMName = 'CPM_ALBH03'
+$CPMName = 'CPM_server1'
+$CPMName = 'CPM_server2'
 $SafeCreationHash = [ordered]@{
     'SafeName'                  = $SafeName.ToUpper()
     'Description'               = "Learning psPAS - $env:USERNAME"
@@ -490,7 +490,7 @@ Get-PASSafe -SafeName $SafeName | Get-PASSafeMember
 #???
 
 # define platform to copy Platform variables
-$SourcePlatform = 'WIND-SV-N-R'
+$SourcePlatform = 'WIND-SRV-N-R'
 
 # Verify Source Platform exists
 Get-PASPlatform | Where-Object {$_.PlatformID -eq $SourcePlatform} -OutVariable SourcePlatformDetails
@@ -601,7 +601,6 @@ $PasswordPullReason = "psPAS-Learning-$MyCustom"
 
 # get account password by passing the get account command to the get password cmdlet through the pipeline (this is not the CCP)
 Get-PASAccount -search $AccountUsername | Get-PASAccountPassword -reason $PasswordPullReason
-# note: there is a ticketing system switch for SNOW enabled platforms but that is not covered here in this demo (yet)
 
 #??? unlock account
 <#
@@ -654,7 +653,7 @@ Get-PASApplicationAuthenticationMethod -AppID $AppIDName | Format-Table -AutoSiz
 
 # -- Target Host (uncomment the one you want to use)
 #$CCPHost = 'epvccp-dev-certificate.contoso.com'
-#$CCPHost = 'ZServer01.contoso.com'
+#$CCPHost = 'Server01.contoso.com'
 $CCPHost = 'epvccp-UAT-certificate.contoso.com'
 
 # Build the URI
